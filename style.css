@@ -1,39 +1,36 @@
 /* ------------------------------------------------------------------ *
  * Devyani Jain — portfolio
- * Original design. Minimal, typographic, in the spirit of clean
- * single-page designer sites.
+ * Original design. Framed "card UI" layout with a sticky identity
+ * column and scrollable work, warm off-white palette, pill accents.
+ * Inspired in spirit by minimal typographic + framed-card portfolios;
+ * all code original.
  * ------------------------------------------------------------------ */
 
 :root {
-  /* Color */
-  --color-bg: #f7f6f3;
-  --color-text: #17161a;
-  --color-muted: #6b6a72;
-  --color-line: #e2e0da;
-  --color-accent: #17161a;
+  /* Color — warm, soft, light */
+  --bg: #ece8e1;
+  --surface: #f7f5f1;
+  --surface-2: #fffdfa;
+  --text: #1b1a18;
+  --muted: #7a756c;
+  --line: #e4dfd6;
+  --accent: #e0553a;
+  --accent-soft: #f3d9d0;
 
   /* Type */
-  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
-    Helvetica, Arial, sans-serif;
+  --font: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica,
+    Arial, sans-serif;
 
-  /* Spacing scale */
-  --space-1: 0.5rem;
-  --space-2: 1rem;
-  --space-3: 1.5rem;
-  --space-4: 2.5rem;
-  --space-5: 4rem;
-  --space-6: 6rem;
-  --space-7: 9rem;
-
-  /* Layout */
-  --wrap-max: 1080px;
-  --wrap-pad: clamp(1.25rem, 5vw, 4rem);
-
-  /* Motion */
+  /* Shape & motion */
+  --radius-frame: 26px;
+  --radius-card: 20px;
+  --radius-pill: 999px;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
-}
 
-/* ----------------------------- Reset ------------------------------ */
+  /* Spacing */
+  --gap: 10px;
+  --pad: clamp(1.5rem, 3.2vw, 3rem);
+}
 
 *,
 *::before,
@@ -48,12 +45,13 @@ html {
 
 body {
   margin: 0;
-  background-color: var(--color-bg);
-  color: var(--color-text);
-  font-family: var(--font-sans);
-  font-size: clamp(1rem, 0.95rem + 0.3vw, 1.125rem);
+  padding: var(--gap);
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: clamp(1rem, 0.96rem + 0.25vw, 1.0625rem);
   line-height: 1.6;
-  font-weight: 400;
   letter-spacing: -0.01em;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -61,7 +59,6 @@ body {
 
 h1,
 h2,
-h3,
 p {
   margin: 0;
 }
@@ -71,23 +68,118 @@ a {
   text-decoration: none;
 }
 
-.wrap {
-  width: 100%;
-  max-width: var(--wrap-max);
-  margin-inline: auto;
-  padding-inline: var(--wrap-pad);
+/* ----------------------------- Frame ------------------------------ */
+
+.frame {
+  display: grid;
+  grid-template-columns: minmax(360px, 460px) 1fr;
+  gap: var(--gap);
+  align-items: start;
 }
 
-/* ------------------------------ Hero ------------------------------ */
+.panel {
+  background: var(--surface);
+  border-radius: var(--radius-frame);
+  padding: var(--pad);
+}
 
-.hero {
-  position: relative;
-  min-height: 100vh;
-  min-height: 100svh;
+/* Left column sticks; right column scrolls with the page */
+.panel--intro {
+  position: sticky;
+  top: var(--gap);
+  height: calc(100vh - var(--gap) * 2);
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  padding-block: var(--space-6) var(--space-7);
+  justify-content: space-between;
+  gap: 2rem;
+  overflow: hidden;
+}
+
+.panel--work {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
+  min-height: calc(100vh - var(--gap) * 2);
+  background: transparent;
+  padding: 0;
+}
+
+/* ------------------------------ Pills ----------------------------- */
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.5rem 0.9rem;
+  border-radius: var(--radius-pill);
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text);
+  line-height: 1;
+  transition: background 0.25s var(--ease), color 0.25s var(--ease),
+    border-color 0.25s var(--ease), transform 0.25s var(--ease);
+}
+
+.pill__dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex: none;
+}
+
+.pill__arrow {
+  transition: transform 0.25s var(--ease);
+}
+
+/* ---------------------------- Brand / nav ------------------------- */
+
+.panel__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.brand__mark {
+  color: var(--accent);
+  font-size: 1.1em;
+}
+
+.nav {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.nav__item {
+  background: var(--surface-2);
+}
+
+.nav__item:hover,
+.nav__item:focus-visible {
+  background: var(--text);
+  color: var(--surface);
+  border-color: var(--text);
+}
+
+/* ----------------------------- Intro ------------------------------ */
+
+.panel__body {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
 }
 
 .eyebrow {
@@ -95,203 +187,135 @@ a {
   font-weight: 500;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--color-muted);
-  margin-bottom: var(--space-4);
+  color: var(--accent);
 }
 
-.hero__title {
-  font-size: clamp(1.75rem, 1.1rem + 3.4vw, 3.75rem);
-  line-height: 1.14;
+.intro {
+  font-size: clamp(1.5rem, 1.1rem + 1.6vw, 2.35rem);
+  line-height: 1.18;
   font-weight: 600;
   letter-spacing: -0.03em;
-  max-width: 20ch;
 }
 
-.hero__muted {
-  color: var(--color-muted);
+.intro__muted {
+  color: var(--muted);
 }
 
-/* --------------------------- Contact bar -------------------------- */
+/* --------------------------- Contact ------------------------------ */
 
-.contact {
+.panel__foot {
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: var(--space-2);
-  margin-top: var(--space-5);
-  font-size: 1rem;
+  flex-direction: column;
+  gap: 0.9rem;
 }
 
-.contact__dot {
-  color: var(--color-muted);
-}
-
-.contact__link {
-  position: relative;
-  font-weight: 500;
-  color: var(--color-text);
-  transition: color 0.25s var(--ease);
-}
-
-.contact__link::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -2px;
-  width: 100%;
-  height: 1px;
-  background-color: currentColor;
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.3s var(--ease);
-}
-
-.contact__link:hover,
-.contact__link:focus-visible {
-  color: var(--color-accent);
-}
-
-.contact__link:hover::after,
-.contact__link:focus-visible::after {
-  transform: scaleX(1);
-}
-
-/* --------------------------- Scroll hint -------------------------- */
-
-.scroll-hint {
-  position: absolute;
-  left: var(--wrap-pad);
-  bottom: var(--space-4);
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-1);
+.foot__label {
   font-size: 0.8125rem;
+  font-weight: 500;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--color-muted);
-  transition: color 0.25s var(--ease);
+  color: var(--muted);
 }
 
-.scroll-hint:hover,
-.scroll-hint:focus-visible {
-  color: var(--color-text);
+.pill-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
 }
 
-.scroll-hint__arrow {
-  display: inline-block;
-  animation: bob 1.8s var(--ease) infinite;
+.pill--link:hover,
+.pill--link:focus-visible {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+  transform: translateY(-1px);
 }
 
-@keyframes bob {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(4px);
-  }
+.pill--link:hover .pill__dot {
+  background: #fff;
+}
+
+.pill--link:hover .pill__arrow {
+  transform: translate(2px, -2px);
 }
 
 /* ------------------------------ Work ------------------------------ */
 
-.work {
-  padding-block: var(--space-6);
-  border-top: 1px solid var(--color-line);
+.work__head {
+  padding: 0.25rem 0.25rem 0;
 }
 
-.section-label {
-  font-size: 0.8125rem;
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--color-muted);
-  margin-bottom: var(--space-5);
+.pill--label {
+  background: var(--surface);
 }
 
-.project {
-  padding-block: var(--space-5);
-  border-top: 1px solid var(--color-line);
+.card {
+  background: var(--surface);
+  border-radius: var(--radius-card);
+  padding: var(--pad);
+  transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
 }
 
-.project:first-of-type {
-  border-top: none;
-  padding-top: 0;
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 18px 40px -24px rgba(27, 26, 24, 0.35);
 }
 
-.project__head {
+.card__head {
   display: flex;
   flex-wrap: wrap;
-  align-items: baseline;
+  align-items: center;
   justify-content: space-between;
-  gap: var(--space-2);
-  margin-bottom: var(--space-3);
+  gap: 0.75rem;
+  margin-bottom: 1.1rem;
 }
 
-.project__title {
-  font-size: clamp(1.5rem, 1.05rem + 2vw, 2.5rem);
+.card__title {
+  font-size: clamp(1.4rem, 1.05rem + 1.4vw, 2rem);
   font-weight: 600;
   letter-spacing: -0.025em;
   line-height: 1.15;
 }
 
-.project__meta {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-1);
-  font-size: 0.9375rem;
-  color: var(--color-muted);
+.pill--meta {
+  background: var(--surface-2);
+  color: var(--muted);
   white-space: nowrap;
+  font-weight: 500;
 }
 
-.project__dot {
-  opacity: 0.7;
+.card__desc {
+  color: var(--muted);
+  max-width: 62ch;
+  font-size: clamp(1rem, 0.97rem + 0.2vw, 1.0625rem);
 }
 
-.project__desc {
-  max-width: 68ch;
-  color: var(--color-muted);
-  font-size: clamp(1rem, 0.97rem + 0.2vw, 1.1875rem);
-}
+/* ---------------------------- Work foot --------------------------- */
 
-/* ----------------------------- Footer ----------------------------- */
-
-.footer {
-  padding-block: var(--space-5);
-  border-top: 1px solid var(--color-line);
-}
-
-.footer__inner {
+.work__foot {
+  margin-top: auto;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: var(--space-3);
-}
-
-.footer__name {
-  font-weight: 600;
-  letter-spacing: -0.02em;
-}
-
-.contact--footer {
-  margin-top: 0;
-}
-
-.footer__top {
+  gap: 1rem;
+  padding: 1.25rem var(--pad);
+  color: var(--muted);
   font-size: 0.9375rem;
-  color: var(--color-muted);
+}
+
+.foot__top {
   transition: color 0.25s var(--ease);
 }
 
-.footer__top:hover,
-.footer__top:focus-visible {
-  color: var(--color-text);
+.foot__top:hover,
+.foot__top:focus-visible {
+  color: var(--text);
 }
 
 /* --------------------------- Fade-in ------------------------------ *
- * Content is visible by default. When scroll-driven animations are
- * supported, projects fade + rise into view as they enter the
- * viewport. Fully progressive — never hides content permanently.
+ * Cards are visible by default. Where supported, they fade + rise as
+ * they scroll into view. Fully progressive; respects reduced motion.
  * ------------------------------------------------------------------ */
 
 @media (prefers-reduced-motion: no-preference) {
@@ -299,7 +323,7 @@ a {
     .fade-in {
       animation: fade-rise linear both;
       animation-timeline: view();
-      animation-range: entry 0% cover 22%;
+      animation-range: entry 0% cover 20%;
     }
   }
 }
@@ -307,7 +331,7 @@ a {
 @keyframes fade-rise {
   from {
     opacity: 0;
-    transform: translateY(28px);
+    transform: translateY(26px);
   }
   to {
     opacity: 1;
@@ -317,20 +341,33 @@ a {
 
 /* --------------------------- Responsive --------------------------- */
 
-@media (max-width: 600px) {
-  .project__head {
-    flex-direction: column;
-    gap: var(--space-1);
+@media (max-width: 900px) {
+  .frame {
+    grid-template-columns: 1fr;
   }
 
-  .footer__inner {
-    flex-direction: column;
-    align-items: flex-start;
+  .panel--intro {
+    position: static;
+    height: auto;
+    min-height: min(88vh, 640px);
+  }
+
+  .panel--work {
+    min-height: 0;
   }
 }
 
-@media (min-width: 900px) {
-  .hero__title {
-    max-width: 22ch;
+@media (max-width: 520px) {
+  :root {
+    --pad: 1.4rem;
+  }
+
+  .panel__top {
+    align-items: flex-start;
+  }
+
+  .card__head {
+    flex-direction: column;
+    align-items: flex-start;
   }
 }

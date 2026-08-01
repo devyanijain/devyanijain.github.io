@@ -32,43 +32,63 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header class="hero" id="top">
-    <div class="wrap">
-      <p class="eyebrow">Devyani Jain</p>
-      <h1 class="hero__title">
-        I'm Devyani Jain, a mission-driven product designer who is chasing after
-        the magic to connect people in physical and digital spaces.
-        <span class="hero__muted">Currently, at GitHub designing to get rid of
-        AI slop and multiply developer powers.</span>
-      </h1>
+  <div class="frame">
+    <!-- Left: identity / bio (sticky on desktop) -->
+    <aside class="panel panel--intro" id="info">
+      <div class="panel__top">
+        <a class="brand" href="#info" aria-label="Devyani Jain — home">
+          <span class="brand__mark" aria-hidden="true">✦</span>
+          <span class="brand__name">Devyani Jain</span>
+        </a>
 
-      <nav class="contact" aria-label="Contact links">
-        <a class="contact__link" href="mailto:devyanijain0@gmail.com">devyanijain0@gmail.com</a>
-        <span class="contact__dot" aria-hidden="true">&middot;</span>
-        <a class="contact__link" href="https://www.linkedin.com/in/devyanidesigns/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-      </nav>
-    </div>
+        <nav class="nav" aria-label="Primary">
+          <a class="pill nav__item" href="#info">Info</a>
+          <a class="pill nav__item" href="#work">Work</a>
+          <a class="pill nav__item" href="#contact">Contact</a>
+        </nav>
+      </div>
 
-    <a class="scroll-hint" href="#work" aria-label="Scroll to work">
-      <span>Scroll</span>
-      <span class="scroll-hint__arrow" aria-hidden="true">&darr;</span>
-    </a>
-  </header>
+      <div class="panel__body">
+        <p class="eyebrow">Product Designer</p>
+        <h1 class="intro">
+          I'm Devyani Jain, a mission-driven product designer chasing after the
+          magic to connect people in physical and digital spaces.
+          <span class="intro__muted">Currently, at GitHub — designing to get
+          rid of AI slop and multiply developer powers.</span>
+        </h1>
+      </div>
 
-  <main id="work" class="work">
-    <div class="wrap">
-      <h2 class="section-label">Selected Work</h2>
+      <div class="panel__foot" id="contact">
+        <p class="foot__label">Get in touch</p>
+        <div class="pill-row">
+          <a class="pill pill--link" href="mailto:devyanijain0@gmail.com">
+            <span class="pill__dot" aria-hidden="true"></span>
+            devyanijain0@gmail.com
+          </a>
+          <a class="pill pill--link" href="https://www.linkedin.com/in/devyanidesigns/" target="_blank" rel="noopener noreferrer">
+            <span class="pill__dot" aria-hidden="true"></span>
+            LinkedIn
+            <span class="pill__arrow" aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </div>
+    </aside>
 
-      <article class="project fade-in">
-        <header class="project__head">
-          <h3 class="project__title">Lucid Motors — Design System</h3>
-          <p class="project__meta">
-            <span>Product Designer</span>
-            <span class="project__dot" aria-hidden="true">&middot;</span>
-            <span>2024</span>
-          </p>
+    <!-- Right: work (scrolls) -->
+    <main class="panel panel--work" id="work">
+      <div class="work__head">
+        <span class="pill pill--label">
+          <span class="pill__dot" aria-hidden="true"></span>
+          Selected Work
+        </span>
+      </div>
+
+      <article class="card fade-in">
+        <header class="card__head">
+          <h2 class="card__title">Lucid Motors — Design System</h2>
+          <span class="pill pill--meta">Product Designer · 2024</span>
         </header>
-        <p class="project__desc">
+        <p class="card__desc">
           Lucid Motors' Electric Integration ecosystem spans 25+ applications
           (OTA updates, Infotainment, ADAS) supported by six teams and 300+
           engineers. The goal was to define a shared experience between
@@ -82,16 +102,12 @@
         </p>
       </article>
 
-      <article class="project fade-in">
-        <header class="project__head">
-          <h3 class="project__title">Lenskart &times; DIVINE Collection</h3>
-          <p class="project__meta">
-            <span>Creative Design Intern</span>
-            <span class="project__dot" aria-hidden="true">&middot;</span>
-            <span>2023</span>
-          </p>
+      <article class="card fade-in">
+        <header class="card__head">
+          <h2 class="card__title">Lenskart × DIVINE Collection</h2>
+          <span class="pill pill--meta">Creative Design Intern · 2023</span>
         </header>
-        <p class="project__desc">
+        <p class="card__desc">
           Lenskart, Asia's largest eyewear retailer, partnered with DIVINE, an
           Indian rapper with over 5.2 million listeners, to bring a hip-hop
           eyewear collection to life. I joined the design team focused on concept
@@ -100,16 +116,12 @@
         </p>
       </article>
 
-      <article class="project fade-in">
-        <header class="project__head">
-          <h3 class="project__title">VisionTranslate</h3>
-          <p class="project__meta">
-            <span>Design Lead</span>
-            <span class="project__dot" aria-hidden="true">&middot;</span>
-            <span>2023</span>
-          </p>
+      <article class="card fade-in">
+        <header class="card__head">
+          <h2 class="card__title">VisionTranslate</h2>
+          <span class="pill pill--meta">Design Lead · 2023</span>
         </header>
-        <p class="project__desc">
+        <p class="card__desc">
           VisionTranslate is a mixed-reality (MR) app built native to Apple
           VisionOS that translates real-time sign-language, text, and speech.
           People who are hard-of-hearing face undesirable experiences when
@@ -121,19 +133,16 @@
           eventually giving life to our mission.
         </p>
       </article>
-    </div>
-  </main>
 
-  <footer class="footer">
-    <div class="wrap footer__inner">
-      <p class="footer__name">Devyani Jain</p>
-      <nav class="contact contact--footer" aria-label="Contact links">
-        <a class="contact__link" href="mailto:devyanijain0@gmail.com">devyanijain0@gmail.com</a>
-        <span class="contact__dot" aria-hidden="true">&middot;</span>
-        <a class="contact__link" href="https://www.linkedin.com/in/devyanidesigns/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-      </nav>
-      <a class="footer__top" href="#top">Back to top &uarr;</a>
-    </div>
-  </footer>
+      <footer class="work__foot">
+        <p>© <span id="year">2024</span> Devyani Jain</p>
+        <a class="foot__top" href="#info">Back to top ↑</a>
+      </footer>
+    </main>
+  </div>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
