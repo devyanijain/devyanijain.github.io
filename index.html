@@ -4,145 +4,488 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Devyani Jain — Product Designer</title>
-  <meta name="description" content="Devyani Jain is a mission-driven product designer connecting people across physical and digital spaces. Currently designing at GitHub." />
+  <title>Golden Github Seeds — Devyani Jain</title>
+  <meta name="description" content="A garden of hubbers I had the joy of working and connecting with at GitHub. Each dot is someone who left a mark on my experience." />
   <meta name="author" content="Devyani Jain" />
-
-  <!-- Keep this site out of search engines (unlisted portfolio) -->
   <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex" />
   <meta name="googlebot" content="noindex, nofollow" />
 
-  <!-- Open Graph -->
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="Devyani Jain — Product Designer" />
-  <meta property="og:description" content="Mission-driven product designer chasing the magic to connect people across physical and digital spaces. Currently at GitHub." />
-  <meta property="og:url" content="https://devyanijain.github.io/" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Devyani Jain — Product Designer" />
-  <meta name="twitter:description" content="Mission-driven product designer chasing the magic to connect people across physical and digital spaces. Currently at GitHub." />
-
-  <!-- Favicon placeholder -->
-  <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20100%20100'%3E%3Ctext%20y='.9em'%20font-size='90'%3E%E2%9C%A6%3C/text%3E%3C/svg%3E" />
-
-  <!-- Inter from Google Fonts -->
+  <!-- Space Mono + Space Grotesk -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="frame">
-    <!-- Left: identity / bio (sticky on desktop) -->
-    <aside class="panel panel--intro" id="info">
-      <div class="panel__top">
-        <a class="brand" href="#info" aria-label="Devyani Jain — home">
-          <span class="brand__mark" aria-hidden="true">✦</span>
-          <span class="brand__name">Devyani Jain</span>
-        </a>
 
-        <nav class="nav" aria-label="Primary">
-          <a class="pill nav__item" href="#info">Info</a>
-          <a class="pill nav__item" href="#work">Work</a>
-          <a class="pill nav__item" href="#contact">Contact</a>
-        </nav>
-      </div>
+  <!-- ============================================================
+       MAIN — three sections stacked to 100vh
+       ============================================================ -->
+  <div class="home">
 
-      <div class="panel__body">
-        <p class="eyebrow">Product Designer</p>
-        <h1 class="intro">
-          I'm Devyani Jain, a mission-driven product designer chasing after the
-          magic to connect people in physical and digital spaces.
-          <span class="intro__muted">Currently, at GitHub — designing to get
-          rid of AI slop and multiply developer powers.</span>
-        </h1>
-      </div>
+    <!-- TOP DOT FIELD (40vh): yellow left | teal right -->
+    <section class="dot-field" id="topContent" aria-label="Yellow and teal dot field"></section>
 
-      <div class="panel__foot" id="contact">
-        <p class="foot__label">Get in touch</p>
-        <div class="pill-row">
-          <a class="pill pill--link" href="mailto:devyanijain0@gmail.com">
-            <span class="pill__dot" aria-hidden="true"></span>
-            devyanijain0@gmail.com
-          </a>
-          <a class="pill pill--link" href="https://www.linkedin.com/in/devyanidesigns/" target="_blank" rel="noopener noreferrer">
-            <span class="pill__dot" aria-hidden="true"></span>
-            LinkedIn
-            <span class="pill__arrow" aria-hidden="true">↗</span>
-          </a>
-        </div>
-      </div>
-    </aside>
-
-    <!-- Right: work (scrolls) -->
-    <main class="panel panel--work" id="work">
-      <div class="work__head">
-        <span class="pill pill--label">
-          <span class="pill__dot" aria-hidden="true"></span>
-          Selected Work
-        </span>
-      </div>
-
-      <article class="card fade-in">
-        <header class="card__head">
-          <h2 class="card__title">Lucid Motors — Design System</h2>
-          <span class="pill pill--meta">Product Designer · 2024</span>
-        </header>
-        <p class="card__desc">
-          Lucid Motors' Electric Integration ecosystem spans 25+ applications
-          (OTA updates, Infotainment, ADAS) supported by six teams and 300+
-          engineers. The goal was to define a shared experience between
-          data-heavy applications across teams with varying functionality and
-          interaction models. Over 12 weeks, I delivered a unified design system
-          and developer tools for three teams. Valued at ~$140K and hosted on
-          Storybook for the first time, the system now enables engineers to
-          build faster and more consistently. It directly supported Lucid Motors
-          during a period of rapid growth — 45% revenue increase that quarter,
-          followed by 65% the next.
+    <!-- MIDDLE CONTENT (20vh) -->
+    <section class="middle-content" id="middleContent">
+      <div class="middle-content__inner">
+        <h1 class="h1">Golden Github Seeds</h1>
+        <p class="p1 middle-content__desc">
+          A garden of hubbers, I had the joy of working and connecting with
+          while I worked here. Each dot is someone who left a mark on my
+          experience here.
         </p>
-      </article>
+        <button class="btn btn--outlined" id="openFeedbackBtn">
+          Log some words
+          <!-- Phosphor ArrowBendUpRight -->
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 256 256" aria-hidden="true">
+            <path d="M229.66,109.66l-48,48a8,8,0,0,1-11.32-11.32L204.69,112H128c-26.47,0-48,21.53-48,48v32a8,8,0,0,1-16,0V160c0-35.29,28.71-64,64-64h76.69L170.34,61.66a8,8,0,0,1,11.32-11.32l48,48A8,8,0,0,1,229.66,109.66Z"/>
+          </svg>
+        </button>
+      </div>
+    </section>
 
-      <article class="card fade-in">
-        <header class="card__head">
-          <h2 class="card__title">Lenskart × DIVINE Collection</h2>
-          <span class="pill pill--meta">Creative Design Intern · 2023</span>
-        </header>
-        <p class="card__desc">
-          Lenskart, Asia's largest eyewear retailer, partnered with DIVINE, an
-          Indian rapper with over 5.2 million listeners, to bring a hip-hop
-          eyewear collection to life. I joined the design team focused on concept
-          direction across e-commerce and in-store creative. Our goal was to
-          combine Indian street hip-hop culture with youth-centric eyewear.
-        </p>
-      </article>
+    <!-- BOTTOM DOT FIELD (40vh): green left | red middle | purple right -->
+    <section class="dot-field" id="bottomContent" aria-label="Green, red and purple dot field"></section>
 
-      <article class="card fade-in">
-        <header class="card__head">
-          <h2 class="card__title">VisionTranslate</h2>
-          <span class="pill pill--meta">Design Lead · 2023</span>
-        </header>
-        <p class="card__desc">
-          VisionTranslate is a mixed-reality (MR) app built native to Apple
-          VisionOS that translates real-time sign-language, text, and speech.
-          People who are hard-of-hearing face undesirable experiences when
-          communicating with another individual. So, we set out to answer, "Can
-          we create a system to fluently connect sign-language communication
-          better?" VisionTranslate is now on the App Store. I designed the
-          end-to-end user experience and co-led the development. I conducted user
-          research, created accessible mockups, and defined spatial wireframes,
-          eventually giving life to our mission.
-        </p>
-      </article>
-
-      <footer class="work__foot">
-        <p>© <span id="year">2024</span> Devyani Jain</p>
-        <a class="foot__top" href="#info">Back to top ↑</a>
-      </footer>
-    </main>
   </div>
 
+  <!-- ============================================================
+       FEEDBACK PANEL — fixed right side, slides in
+       ============================================================ -->
+  <aside class="feedback-panel" id="feedbackPanel" aria-label="Feedback" aria-hidden="true">
+
+    <!-- ── EDIT VARIANT ── -->
+    <div class="feedback-box" id="editVariant" role="dialog" aria-modal="true" aria-labelledby="editTitle">
+      <div class="actionBar actionBar--bordered">
+        <h3 class="h3" id="editTitle">Feedback</h3>
+        <button class="icon-btn" id="closeEditBtn" aria-label="Close">
+          <!-- Phosphor X -->
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256" aria-hidden="true">
+            <path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"/>
+          </svg>
+        </button>
+      </div>
+
+      <div class="contentBar" id="editScrollBody">
+        <form id="feedbackForm" novalidate>
+          <div class="form-group">
+            <label class="form-label h3" for="inp-name">Name</label>
+            <input class="form-input" type="text" id="inp-name" name="name" autocomplete="name" />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label h3" for="inp-role">Role</label>
+            <span class="form-hint caption">Your role at Github</span>
+            <input class="form-input" type="text" id="inp-role" name="role" />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label h3" for="inp-relationship">Relationship</label>
+            <span class="form-hint caption">What were you to Devyani?</span>
+            <select class="form-select" id="inp-relationship" name="relationship">
+              <option value="Manager">Manager</option>
+              <option value="Direct Report">Direct Report</option>
+              <option value="Peer">Peer</option>
+              <option value="Cross-functional Partner">Cross-functional Partner</option>
+              <option value="Mentor">Mentor</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label h3" for="inp-feedback">Your feedback</label>
+            <span class="form-hint caption">You could say anything!</span>
+            <textarea class="form-textarea" id="inp-feedback" name="feedback" rows="5"></textarea>
+          </div>
+
+          <p class="form-private caption">Only Devyani will be able to see answer below!</p>
+
+          <div class="form-group">
+            <label class="form-label h3" for="inp-improve">Things I can work on…</label>
+            <input class="form-input" type="text" id="inp-improve" name="improvement" />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label h3" for="inp-deepdive">I'm early in my career — if there is one topic I should deep dive into, what would it be?</label>
+            <input class="form-input" type="text" id="inp-deepdive" name="deepDive" />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label h3" for="inp-advice">One piece of advice Devyani should keep in mind…</label>
+            <input class="form-input" type="text" id="inp-advice" name="advice" />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label h3" for="inp-touch">How can I stay in touch with you?</label>
+            <input class="form-input" type="text" id="inp-touch" name="stayInTouch" />
+          </div>
+        </form>
+      </div>
+
+      <!-- scroll hint -->
+      <div class="scroll-hint caption" id="editMoreHint" aria-hidden="true">More</div>
+
+      <div class="footerBar footerBar--end">
+        <button class="btn btn--primary" id="submitFeedbackBtn" type="button">Submit</button>
+      </div>
+    </div>
+
+    <!-- ── VIEW VARIANT ── -->
+    <div class="feedback-box" id="viewVariant" role="dialog" aria-modal="true" hidden>
+      <div class="actionBar actionBar--bordered actionBar--end">
+        <button class="icon-btn" id="closeViewBtn" aria-label="Close">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256" aria-hidden="true">
+            <path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"/>
+          </svg>
+        </button>
+      </div>
+
+      <div class="contentBar">
+        <div class="view-field">
+          <span class="view-label h3">Name:</span>
+          <span class="view-value p1" id="vw-name"></span>
+        </div>
+        <div class="view-field">
+          <span class="view-label h3">Role:</span>
+          <span class="view-value p1" id="vw-role"></span>
+        </div>
+        <div class="view-field">
+          <span class="view-label h3">Relationship:</span>
+          <span class="view-value p1" id="vw-relationship"></span>
+        </div>
+        <div class="view-field">
+          <span class="view-label h3">Feedback:</span>
+          <span class="view-value p1" id="vw-feedback"></span>
+        </div>
+      </div>
+
+      <div class="footerBar footerBar--between">
+        <!-- Phosphor ArrowCircleLeft -->
+        <button class="icon-btn" id="prevDotBtn" aria-label="Previous feedback">
+          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" viewBox="0 0 256 256" aria-hidden="true">
+            <path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm48-88a8,8,0,0,1-8,8H107.31l18.35,18.34a8,8,0,0,1-11.32,11.32l-32-32a8,8,0,0,1,0-11.32l32-32a8,8,0,0,1,11.32,11.32L107.31,120H168A8,8,0,0,1,176,128Z"/>
+          </svg>
+        </button>
+        <!-- Phosphor ArrowCircleRight -->
+        <button class="icon-btn" id="nextDotBtn" aria-label="Next feedback">
+          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" viewBox="0 0 256 256" aria-hidden="true">
+            <path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm45.66-93.66-32,32a8,8,0,0,1-11.32-11.32L148.69,136H88a8,8,0,0,1,0-16h60.69l-18.35-18.34a8,8,0,0,1,11.32-11.32l32,32A8,8,0,0,1,173.66,162.34Z"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- ── CONFIRMATION VARIANT ── -->
+    <div class="feedback-box" id="confirmVariant" role="dialog" aria-modal="true" aria-labelledby="confirmTitle" hidden>
+      <div class="actionBar actionBar--bordered">
+        <h3 class="h3" id="confirmTitle">Thank you!</h3>
+        <button class="icon-btn" id="closeConfirmBtn" aria-label="Close">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256" aria-hidden="true">
+            <path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"/>
+          </svg>
+        </button>
+      </div>
+
+      <div class="contentBar">
+        <h4 class="h3">Your dot has been planted!</h4>
+        <p class="p1 confirm-desc">
+          Thank you so much for being a part of my journey and inspiring me.
+          I value our time together and hope we can work again soon. Stay in touch!
+        </p>
+      </div>
+
+      <div class="footerBar footerBar--end footerBar--gap">
+        <button class="btn btn--secondary" id="editFromConfirmBtn">Edit</button>
+        <button class="btn btn--primary" id="doneBtn">Done</button>
+      </div>
+    </div>
+
+  </aside>
+
+  <!-- ============================================================
+       SCRIPT
+       ============================================================ -->
   <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
+    'use strict';
+
+    /* ----------------------------------------------------------
+       RELATIONSHIP → DOT COLOR GROUP
+    ---------------------------------------------------------- */
+    const REL_COLOR = {
+      'Manager':                  'yellow',
+      'Peer':                     'teal',
+      'Direct Report':            'green',
+      'Cross-functional Partner': 'red',
+      'Mentor':                   'purple',
+    };
+
+    /* ----------------------------------------------------------
+       DOT DATA
+       topDots    : yellow (x 2–44%) | teal (x 51–96%)
+       bottomDots : green (x 1–28%) | red (x 32–59%) | purple (x 64–98%)
+       s = submitted (glowing), f = feedback object
+    ---------------------------------------------------------- */
+    const topDots = [
+      // ── Yellow ──
+      {id:'y01',c:'yellow',x:3,  y:10,s:false},
+      {id:'y02',c:'yellow',x:11, y:10,s:true, f:{n:'Allie Thu',    r:'Design Director',    rel:'Manager',                  t:'Devyani was an extraordinary designer who elevated every project she touched.'}},
+      {id:'y03',c:'yellow',x:19, y:10,s:false},
+      {id:'y04',c:'yellow',x:28, y:10,s:false},
+      {id:'y05',c:'yellow',x:8,  y:25,s:false},
+      {id:'y06',c:'yellow',x:17, y:25,s:true, f:{n:'Priya K',      r:'Senior Designer',    rel:'Manager',                  t:'A joy to collaborate with. Creative, meticulous, and always user-first.'}},
+      {id:'y07',c:'yellow',x:27, y:25,s:false},
+      {id:'y08',c:'yellow',x:36, y:25,s:false},
+      {id:'y09',c:'yellow',x:43, y:25,s:false},
+      {id:'y10',c:'yellow',x:3,  y:41,s:false},
+      {id:'y11',c:'yellow',x:12, y:41,s:false},
+      {id:'y12',c:'yellow',x:23, y:41,s:true, f:{n:'Marco V',      r:'Product Manager',    rel:'Manager',                  t:'Devyani brings incredible cross-functional clarity. A pleasure to work with.'}},
+      {id:'y13',c:'yellow',x:33, y:41,s:false},
+      {id:'y14',c:'yellow',x:8,  y:58,s:false},
+      {id:'y15',c:'yellow',x:18, y:58,s:false},
+      {id:'y16',c:'yellow',x:29, y:58,s:false},
+      {id:'y17',c:'yellow',x:39, y:58,s:true, f:{n:'Jordan L',     r:'Engineering Lead',   rel:'Manager',                  t:'Made design handoffs a breeze. Precise, thoughtful, collaborative.'}},
+      {id:'y18',c:'yellow',x:4,  y:74,s:false},
+      {id:'y19',c:'yellow',x:14, y:74,s:false},
+      {id:'y20',c:'yellow',x:25, y:74,s:false},
+      {id:'y21',c:'yellow',x:35, y:74,s:true, f:{n:'Sam H',        r:'Designer',           rel:'Manager',                  t:'One of the most growth-oriented designers I have worked with.'}},
+      {id:'y22',c:'yellow',x:43, y:74,s:false},
+      // ── Teal ──
+      {id:'t01',c:'teal',x:53,y:8, s:false},
+      {id:'t02',c:'teal',x:62,y:8, s:false},
+      {id:'t03',c:'teal',x:71,y:8, s:true, f:{n:'Kai M',          r:'Design Manager',     rel:'Peer',                     t:'Outstanding design thinking and execution. A collaborative powerhouse.'}},
+      {id:'t04',c:'teal',x:81,y:8, s:false},
+      {id:'t05',c:'teal',x:91,y:8, s:false},
+      {id:'t06',c:'teal',x:55,y:23,s:false},
+      {id:'t07',c:'teal',x:65,y:23,s:false},
+      {id:'t08',c:'teal',x:75,y:23,s:true, f:{n:'Lin C',          r:'Staff Engineer',     rel:'Peer',                     t:'Devyani bridged design and engineering beautifully. A true systems thinker.'}},
+      {id:'t09',c:'teal',x:85,y:23,s:false},
+      {id:'t10',c:'teal',x:93,y:23,s:false},
+      {id:'t11',c:'teal',x:51,y:39,s:false},
+      {id:'t12',c:'teal',x:61,y:39,s:true, f:{n:'Dani P',         r:'Product Designer',   rel:'Peer',                     t:'Creative, articulate, and incredibly fun to collaborate with.'}},
+      {id:'t13',c:'teal',x:71,y:39,s:false},
+      {id:'t14',c:'teal',x:81,y:39,s:false},
+      {id:'t15',c:'teal',x:90,y:39,s:false},
+      {id:'t16',c:'teal',x:57,y:55,s:false},
+      {id:'t17',c:'teal',x:67,y:55,s:true, f:{n:'Alex T',         r:'Research Lead',      rel:'Peer',                     t:'Deep empathy and excellent research skills. Devyani is a thoughtful advocate.'}},
+      {id:'t18',c:'teal',x:77,y:55,s:false},
+      {id:'t19',c:'teal',x:88,y:55,s:false},
+      {id:'t20',c:'teal',x:52,y:70,s:false},
+      {id:'t21',c:'teal',x:63,y:70,s:false},
+      {id:'t22',c:'teal',x:73,y:70,s:false},
+      {id:'t23',c:'teal',x:84,y:70,s:true, f:{n:'Yuki S',         r:'Brand Designer',     rel:'Peer',                     t:'Inspired me to think more holistically about design systems.'}},
+      {id:'t24',c:'teal',x:95,y:70,s:false},
+    ];
+
+    const bottomDots = [
+      // ── Green ──
+      {id:'g01',c:'green', x:11,y:8, s:true, f:{n:'Tara N',       r:'UX Lead',            rel:'Direct Report',            t:'Devyani showed remarkable growth. Mentoring her was a highlight.'}},
+      {id:'g02',c:'green', x:21,y:8, s:false},
+      {id:'g03',c:'green', x:1, y:25,s:false},
+      {id:'g04',c:'green', x:9, y:25,s:true, f:{n:'Ben F',        r:'Designer',           rel:'Direct Report',            t:'Creative and meticulous. I learned a lot watching Devyani work.'}},
+      {id:'g05',c:'green', x:18,y:25,s:false},
+      {id:'g06',c:'green', x:26,y:25,s:false},
+      {id:'g07',c:'green', x:3, y:42,s:false},
+      {id:'g08',c:'green', x:13,y:42,s:false},
+      {id:'g09',c:'green', x:23,y:42,s:true, f:{n:'Lena W',       r:'Content Strategist', rel:'Direct Report',            t:'Thoughtful and always user-first. A true collaborator.'}},
+      {id:'g10',c:'green', x:0, y:59,s:false},
+      {id:'g11',c:'green', x:10,y:59,s:false},
+      {id:'g12',c:'green', x:20,y:59,s:false},
+      {id:'g13',c:'green', x:2, y:75,s:true, f:{n:'Chloe R',      r:'Product Manager',    rel:'Direct Report',            t:'Always asks the right questions. Makes everyone around her better.'}},
+      {id:'g14',c:'green', x:14,y:75,s:false},
+      {id:'g15',c:'green', x:24,y:75,s:false},
+      // ── Red ──
+      {id:'r01',c:'red',   x:35,y:10,s:false},
+      {id:'r02',c:'red',   x:46,y:10,s:true, f:{n:'Omar A',       r:'Design Director',    rel:'Cross-functional Partner', t:'Devyani was exceptional. Her cross-functional clarity is rare.'}},
+      {id:'r03',c:'red',   x:32,y:27,s:false},
+      {id:'r04',c:'red',   x:43,y:27,s:true, f:{n:'Ruby S',       r:'Senior Designer',    rel:'Cross-functional Partner', t:'Incredibly talented. Her process is as strong as her output.'}},
+      {id:'r05',c:'red',   x:54,y:27,s:false},
+      {id:'r06',c:'red',   x:36,y:43,s:false},
+      {id:'r07',c:'red',   x:48,y:43,s:false},
+      {id:'r08',c:'red',   x:57,y:43,s:true, f:{n:'Felix H',      r:'Engineer',           rel:'Cross-functional Partner', t:'Great at translating complex ideas into clear, actionable designs.'}},
+      {id:'r09',c:'red',   x:33,y:60,s:false},
+      {id:'r10',c:'red',   x:44,y:60,s:false},
+      {id:'r11',c:'red',   x:56,y:60,s:false},
+      {id:'r12',c:'red',   x:38,y:76,s:true, f:{n:'Mia T',        r:'UX Researcher',      rel:'Cross-functional Partner', t:'Exceptional at synthesizing research insights into design decisions.'}},
+      {id:'r13',c:'red',   x:50,y:76,s:false},
+      // ── Purple ──
+      {id:'p01',c:'purple',x:66,y:8, s:false},
+      {id:'p02',c:'purple',x:77,y:8, s:true, f:{n:'Nora J',       r:'Design Ops',         rel:'Mentor',                   t:'Devyani elevates everyone around her. She will go very far.'}},
+      {id:'p03',c:'purple',x:87,y:8, s:false},
+      {id:'p04',c:'purple',x:96,y:8, s:false},
+      {id:'p05',c:'purple',x:70,y:23,s:true, f:{n:'Isaac B',      r:'VP of Design',       rel:'Mentor',                   t:'A rising star with limitless potential. Incredibly self-aware and driven.'}},
+      {id:'p06',c:'purple',x:80,y:23,s:false},
+      {id:'p07',c:'purple',x:90,y:23,s:false},
+      {id:'p08',c:'purple',x:64,y:39,s:false},
+      {id:'p09',c:'purple',x:75,y:39,s:false},
+      {id:'p10',c:'purple',x:85,y:39,s:true, f:{n:'Zara M',       r:'Brand Lead',         rel:'Mentor',                   t:'Beautiful work, thoughtful process. Devyani thinks in systems.'}},
+      {id:'p11',c:'purple',x:93,y:39,s:false},
+      {id:'p12',c:'purple',x:68,y:56,s:false},
+      {id:'p13',c:'purple',x:79,y:56,s:false},
+      {id:'p14',c:'purple',x:89,y:56,s:false},
+      {id:'p15',c:'purple',x:97,y:56,s:true, f:{n:'Chris O',      r:'Principal Designer', rel:'Mentor',                   t:'Inspiring work ethic and curiosity. Devyani never stops learning.'}},
+      {id:'p16',c:'purple',x:65,y:72,s:false},
+      {id:'p17',c:'purple',x:76,y:72,s:false},
+      {id:'p18',c:'purple',x:87,y:72,s:true, f:{n:'Leila H',      r:'UX Writer',          rel:'Mentor',                   t:'Makes every word and pixel count. A joy to mentor.'}},
+      {id:'p19',c:'purple',x:96,y:72,s:false},
+    ];
+
+    const allDots          = [...topDots, ...bottomDots];
+    const submittedDots    = allDots.filter(d => d.s);
+    let   viewIndex        = 0;
+    let   pendingColor     = null;
+
+    /* ----------------------------------------------------------
+       RENDER DOTS
+    ---------------------------------------------------------- */
+    function renderDots(containerId, dots) {
+      const container = document.getElementById(containerId);
+      dots.forEach(dot => {
+        const el = document.createElement('button');
+        el.className = `dot dot--${dot.c}` + (dot.s ? ' dot--submitted' : '');
+        el.id        = 'dot-' + dot.id;
+        el.dataset.dotId = dot.id;
+        el.style.left = dot.x + '%';
+        el.style.top  = dot.y + '%';
+
+        if (dot.s) {
+          el.setAttribute('aria-label', `View feedback from ${dot.f.n}`);
+          el.addEventListener('click', () => showFeedback(dot));
+        } else {
+          el.disabled = true;
+          el.setAttribute('aria-hidden', 'true');
+          el.tabIndex = -1;
+        }
+        container.appendChild(el);
+      });
+    }
+
+    renderDots('topContent',    topDots);
+    renderDots('bottomContent', bottomDots);
+
+    /* ----------------------------------------------------------
+       PANEL HELPERS
+    ---------------------------------------------------------- */
+    const panel       = document.getElementById('feedbackPanel');
+    const editBox     = document.getElementById('editVariant');
+    const viewBox     = document.getElementById('viewVariant');
+    const confBox     = document.getElementById('confirmVariant');
+
+    function showOnly(box) {
+      [editBox, viewBox, confBox].forEach(b => {
+        b.hidden = (b !== box);
+      });
+    }
+
+    function openPanel() {
+      panel.classList.add('is-open');
+      panel.setAttribute('aria-hidden', 'false');
+    }
+
+    function closePanel() {
+      panel.classList.remove('is-open');
+      panel.setAttribute('aria-hidden', 'true');
+      [editBox, viewBox, confBox].forEach(b => { b.hidden = true; });
+    }
+
+    function openEdit() {
+      showOnly(editBox);
+      openPanel();
+      updateMoreHint();
+    }
+
+    function showFeedback(dot) {
+      viewIndex = submittedDots.findIndex(d => d.id === dot.id);
+      const f = dot.f;
+      document.getElementById('vw-name').textContent         = f.n;
+      document.getElementById('vw-role').textContent         = f.r;
+      document.getElementById('vw-relationship').textContent = f.rel;
+      document.getElementById('vw-feedback').textContent     = f.t;
+      showOnly(viewBox);
+      openPanel();
+    }
+
+    function openConfirm() {
+      showOnly(confBox);
+      openPanel();
+    }
+
+    /* ----------------------------------------------------------
+       "MORE" SCROLL HINT
+    ---------------------------------------------------------- */
+    const moreHint = document.getElementById('editMoreHint');
+    const editScroll = document.getElementById('editScrollBody');
+
+    function updateMoreHint() {
+      if (!editScroll) return;
+      const hasMore = editScroll.scrollHeight > editScroll.clientHeight + 4;
+      const atBottom = editScroll.scrollTop + editScroll.clientHeight >= editScroll.scrollHeight - 8;
+      moreHint.hidden = !hasMore || atBottom;
+    }
+
+    editScroll && editScroll.addEventListener('scroll', updateMoreHint);
+    moreHint && moreHint.addEventListener('click', () => {
+      editScroll.scrollBy({ top: 200, behavior: 'smooth' });
+    });
+
+    /* ----------------------------------------------------------
+       BUTTON WIRING
+    ---------------------------------------------------------- */
+    document.getElementById('openFeedbackBtn').addEventListener('click', openEdit);
+    document.getElementById('closeEditBtn').addEventListener('click',    closePanel);
+    document.getElementById('closeViewBtn').addEventListener('click',    closePanel);
+    document.getElementById('closeConfirmBtn').addEventListener('click', closePanel);
+
+    document.getElementById('submitFeedbackBtn').addEventListener('click', () => {
+      pendingColor = REL_COLOR[document.getElementById('inp-relationship').value] || 'teal';
+      openConfirm();
+    });
+
+    document.getElementById('editFromConfirmBtn').addEventListener('click', openEdit);
+
+    document.getElementById('doneBtn').addEventListener('click', () => {
+      // Plant a dot: find the first un-submitted dot in the matching color group
+      if (pendingColor) {
+        const target = allDots.find(d => d.c === pendingColor && !d.s);
+        if (target) {
+          target.s = true;
+          target.f = {
+            n:   document.getElementById('inp-name').value     || 'Anonymous',
+            r:   document.getElementById('inp-role').value     || '—',
+            rel: document.getElementById('inp-relationship').value,
+            t:   document.getElementById('inp-feedback').value || '',
+          };
+          submittedDots.push(target);
+          const el = document.getElementById('dot-' + target.id);
+          if (el) {
+            el.classList.add('dot--submitted');
+            el.disabled = false;
+            el.removeAttribute('aria-hidden');
+            el.tabIndex = 0;
+            el.setAttribute('aria-label', `View feedback from ${target.f.n}`);
+            el.addEventListener('click', () => showFeedback(target));
+          }
+        }
+        pendingColor = null;
+      }
+      document.getElementById('feedbackForm').reset();
+      closePanel();
+    });
+
+    document.getElementById('prevDotBtn').addEventListener('click', () => {
+      viewIndex = (viewIndex - 1 + submittedDots.length) % submittedDots.length;
+      showFeedback(submittedDots[viewIndex]);
+    });
+
+    document.getElementById('nextDotBtn').addEventListener('click', () => {
+      viewIndex = (viewIndex + 1) % submittedDots.length;
+      showFeedback(submittedDots[viewIndex]);
+    });
+
+    // Close on Escape
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && panel.classList.contains('is-open')) closePanel();
+    });
   </script>
 </body>
 </html>
