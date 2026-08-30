@@ -302,12 +302,27 @@
 }
 
 .custom-select__trigger {
-  display:         flex;
-  align-items:     center;
-  justify-content: space-between;
-  cursor:          pointer;
-  text-align:      left;
-  width:           100%;
+  /* Button reset — override UA styles */
+  -webkit-appearance: none;
+  appearance:         none;
+  background:         var(--bg-primary);
+  border:             1px solid var(--bg-secondary);
+  border-radius:      var(--radii-xs);
+  color:              var(--fg-default-muted);
+  font-family:        var(--font-body);
+  font-size:          var(--fs-p3);
+  font-weight:        400;
+  height:             36px;
+  padding:            0 var(--padding-xs);
+  box-sizing:         border-box;
+  /* Layout */
+  display:            flex;
+  align-items:        center;
+  justify-content:    space-between;
+  cursor:             pointer;
+  text-align:         left;
+  width:              100%;
+  transition:         background 0.15s var(--ease), border-color 0.15s var(--ease);
 }
 
 .custom-select__trigger .custom-select__value {
