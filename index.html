@@ -129,24 +129,17 @@
 
             <!-- Field 3: Relationship -->
             <div class="input-field">
-              <label class="input-field__label" for="relTrigger">Relationship</label>
+              <label class="input-field__label" for="inp-relationship">Relationship</label>
               <span class="input-field__caption">What were you to Devyani?</span>
-              <div class="custom-select" id="relSelect">
-                <button class="custom-select__trigger" type="button"
-                        id="relTrigger" aria-haspopup="listbox" aria-expanded="false"
-                        aria-controls="relList">
-                  <span class="custom-select__value">Select relationship…</span>
-                  <i class="ph ph-caret-down custom-select__icon" aria-hidden="true"></i>
-                </button>
-                <ul class="custom-select__list" id="relList" role="listbox" aria-label="Relationship" hidden>
-                  <li class="custom-select__option" role="option" data-value="Manager/PM">Manager/PM</li>
-                  <li class="custom-select__option" role="option" data-value="Direct Report">Direct Report</li>
-                  <li class="custom-select__option" role="option" data-value="Colleague">Colleague</li>
-                  <li class="custom-select__option" role="option" data-value="Team/Engineer">Team/Engineer</li>
-                  <li class="custom-select__option" role="option" data-value="SF office buddy">SF office buddy</li>
-                </ul>
-                <!-- hidden field keeps same id so existing JS reads it unchanged -->
-                <input type="hidden" id="inp-relationship" name="relationship" value="Manager/PM" />
+              <div class="input-field__wrapper input-field__wrapper--select">
+                <select class="input-field__input input-field__input--select" id="inp-relationship" name="relationship">
+                  <option value="Manager/PM">Manager/PM</option>
+                  <option value="Direct Report">Direct Report</option>
+                  <option value="Colleague">Colleague</option>
+                  <option value="Team/Engineer">Team/Engineer</option>
+                  <option value="SF office buddy">SF office buddy</option>
+                </select>
+                <i class="ph ph-caret-down input-field__select-icon" aria-hidden="true"></i>
               </div>
             </div>
 
@@ -624,66 +617,6 @@
     }
 
     const dotSearchEl = document.getElementById('dotSearch');
-
-    /* ── Custom relationship select ──────────────────────────────────── */
-    (function initRelSelect() {
-      const wrap    = document.getElementById('relSelect');
-      const trigger = document.getElementById('relTrigger');
-      const list    = document.getElementById('relList');
-      const hidden  = document.getElementById('inp-relationship');
-      const valueEl = trigger.querySelector('.custom-select__value');
-
-      function openList() {
-        list.hidden = false;
-        wrap.classList.add('is-open');
-        trigger.setAttribute('aria-expanded', 'true');
-        // Position fixed relative to the trigger
-        const rect = trigger.getBoundingClientRect();
-        const gap  = 6;
-        list.style.top   = (rect.bottom + gap) + 'px';
-        list.style.left  = rect.left + 'px';
-        list.style.width = rect.width + 'px';
-      }
-      function closeList() {
-        list.hidden = true;
-        wrap.classList.remove('is-open');
-        trigger.setAttribute('aria-expanded', 'false');
-      }
-      function select(value, label) {
-        hidden.value      = value;
-        valueEl.textContent = label;
-        trigger.classList.add('has-value');
-        list.querySelectorAll('.custom-select__option').forEach(o => {
-          o.setAttribute('aria-selected', o.dataset.value === value ? 'true' : 'false');
-        });
-        closeList();
-      }
-
-      // Default to first option
-      select('Manager/PM', 'Manager/PM');
-
-      trigger.addEventListener('click', () => list.hidden ? openList() : closeList());
-
-      list.addEventListener('click', e => {
-        const opt = e.target.closest('.custom-select__option');
-        if (opt) select(opt.dataset.value, opt.textContent.trim());
-      });
-
-      // Close when clicking outside
-      document.addEventListener('click', e => {
-        if (!wrap.contains(e.target)) closeList();
-      });
-
-      // Close if content scrolls past the trigger
-      const contentBar = wrap.closest('.contentBar');
-      if (contentBar) contentBar.addEventListener('scroll', () => closeList());
-
-      // Keyboard nav
-      trigger.addEventListener('keydown', e => {
-        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); list.hidden ? openList() : closeList(); }
-        if (e.key === 'Escape') closeList();
-      });
-    })();
 
     function openPanel() {
       panel.classList.add('is-open');

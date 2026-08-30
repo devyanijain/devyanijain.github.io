@@ -553,10 +553,10 @@
 
 /* ── Content Bar ── */
 .contentBar {
-  flex:       1;
-  overflow-y: auto;
-  padding:    var(--padding-xs) 0;
-  display:    flex;
+  flex:           1;
+  overflow-y:     auto;
+  padding:        var(--padding-xs) 0 120px; /* extra bottom room so selects open downward */
+  display:        flex;
   flex-direction: column;
   gap:        var(--padding-sm);
   scrollbar-width: thin;
