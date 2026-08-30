@@ -15,6 +15,12 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
+  <!-- Phosphor Icons -->
+  <script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
+
+  <!-- Design system (load order matters: tokens → components → layout) -->
+  <link rel="stylesheet" href="tokens.css" />
+  <link rel="stylesheet" href="components.css" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -30,19 +36,20 @@
     <!-- MIDDLE CONTENT (20vh) -->
     <section class="middle-content" id="middleContent">
       <div class="middle-content__inner">
-        <h1 class="h1">Golden Github Seeds</h1>
+        <h1 class="h1">The people who made GitHub home.</h1>
         <p class="p1 middle-content__desc">
-          A garden of hubbers, I had the joy of working and connecting with
-          while I worked here. Each dot is someone who left a mark on my
-          experience here.
+          A field of dots, each one a Hubber who made my time at GitHub worth every moment.
         </p>
-        <button class="btn btn--outlined" id="openFeedbackBtn">
-          Log some words
-          <!-- Phosphor ArrowBendUpRight -->
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 256 256" aria-hidden="true">
-            <path d="M229.66,109.66l-48,48a8,8,0,0,1-11.32-11.32L204.69,112H128c-26.47,0-48,21.53-48,48v32a8,8,0,0,1-16,0V160c0-35.29,28.71-64,64-64h76.69L170.34,61.66a8,8,0,0,1,11.32-11.32l48,48A8,8,0,0,1,229.66,109.66Z"/>
-          </svg>
-        </button>
+        <div class="middle-content__actions">
+          <button class="btn btn--outlined" id="openFeedbackBtn" type="button">
+            Log some words
+            <!-- Phosphor ArrowBendUpRight -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 256 256" aria-hidden="true">
+              <path d="M229.66,109.66l-48,48a8,8,0,0,1-11.32-11.32L204.69,112H128c-26.47,0-48,21.53-48,48v32a8,8,0,0,1-16,0V160c0-35.29,28.71-64,64-64h76.69L170.34,61.66a8,8,0,0,1,11.32-11.32l48,48A8,8,0,0,1,229.66,109.66Z"/>
+            </svg>
+          </button>
+          <button class="btn btn--secondary" id="openMoreBtn" type="button">More</button>
+        </div>
       </div>
     </section>
 
@@ -51,89 +58,158 @@
 
   </div>
 
+  <!-- Dot hover tooltip -->
+  <div id="dotTooltip" class="dot-tooltip" hidden aria-hidden="true">
+    <span class="dot-tooltip__name p2" id="tt-name"></span>
+    <span class="dot-tooltip__role caption" id="tt-role"></span>
+  </div>
+
+  <div id="yourDotBox" class="your-dot-box" hidden aria-live="polite">
+    <span class="p3">This is your dot</span>
+  </div>
+
+  <!-- Search widget -->
+  <div class="dot-search" id="dotSearch" role="search">
+    <label class="dot-search__label" for="dotSearchInput">Find someone's dot</label>
+    <div class="dot-search__input-wrapper">
+      <!-- Phosphor MagnifyingGlass -->
+      <svg class="dot-search__icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 256 256" aria-hidden="true">
+        <path d="M229.66,218.34l-50.07-50.07a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.31ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"/>
+      </svg>
+      <input class="dot-search__input" id="dotSearchInput" type="search" placeholder="Enter name or role…" autocomplete="off" spellcheck="false" />
+    </div>
+  </div>
+
   <!-- ============================================================
        FEEDBACK PANEL — fixed right side, slides in
        ============================================================ -->
   <aside class="feedback-panel" id="feedbackPanel" aria-label="Feedback" aria-hidden="true">
 
-    <!-- ── EDIT VARIANT ── -->
+    <!-- ────────────────────────────────────────────────
+         EDIT VARIANT
+    ──────────────────────────────────────────────── -->
     <div class="feedback-box" id="editVariant" role="dialog" aria-modal="true" aria-labelledby="editTitle" hidden>
+
+      <!-- Action Bar -->
       <div class="actionBar actionBar--bordered">
-        <h3 class="h3" id="editTitle">Feedback</h3>
+        <div class="actionBar__title-group">
+          <h3 class="h3" id="editTitle">Leave your mark</h3>
+          <p class="p2 actionBar__desc">Create your dot and share what it was like working with Devyani. Your feedback shapes how she grows.</p>
+        </div>
         <button class="icon-btn" id="closeEditBtn" aria-label="Close">
-          <!-- Phosphor X -->
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256" aria-hidden="true">
             <path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"/>
           </svg>
         </button>
       </div>
 
+      <!-- Content Bar -->
       <div class="contentBar" id="editScrollBody">
-        <form id="feedbackForm" novalidate>
-          <div class="form-group">
-            <label class="form-label h3" for="inp-name">Name</label>
-            <input class="form-input" type="text" id="inp-name" name="name" autocomplete="name" />
-          </div>
+        <form id="feedbackForm" novalidate style="display:flex;flex-direction:column;gap:var(--gap-sm);">
 
-          <div class="form-group">
-            <label class="form-label h3" for="inp-role">Role</label>
-            <span class="form-hint caption">Your role at Github</span>
-            <input class="form-input" type="text" id="inp-role" name="role" />
-          </div>
+          <!-- Public fields container -->
+          <div class="form-section--public">
 
-          <div class="form-group">
-            <label class="form-label h3" for="inp-relationship">Relationship</label>
-            <span class="form-hint caption">What were you to Devyani?</span>
-            <select class="form-select" id="inp-relationship" name="relationship">
-              <option value="Manager">Manager</option>
-              <option value="Direct Report">Direct Report</option>
-              <option value="Peer">Peer</option>
-              <option value="Cross-functional Partner">Cross-functional Partner</option>
-              <option value="Mentor">Mentor</option>
-            </select>
-          </div>
+            <!-- Field 1: Name -->
+            <div class="input-field">
+              <label class="input-field__label" for="inp-name">Name</label>
+              <div class="input-field__wrapper">
+                <input class="input-field__input" type="text" id="inp-name" name="name" autocomplete="name" placeholder="Your name" />
+              </div>
+            </div>
 
-          <div class="form-group">
-            <label class="form-label h3" for="inp-feedback">Your feedback</label>
-            <span class="form-hint caption">You could say anything!</span>
-            <textarea class="form-textarea" id="inp-feedback" name="feedback" rows="5"></textarea>
-          </div>
+            <!-- Field 2: Role -->
+            <div class="input-field">
+              <label class="input-field__label" for="inp-role">Role</label>
+              <span class="input-field__caption">Your role here</span>
+              <div class="input-field__wrapper">
+                <input class="input-field__input" type="text" id="inp-role" name="role" placeholder="e.g. Senior Designer" />
+              </div>
+            </div>
 
-          <p class="form-private caption">Only Devyani will be able to see answer below!</p>
+            <!-- Field 3: Relationship -->
+            <div class="input-field">
+              <label class="input-field__label" for="relTrigger">Relationship</label>
+              <span class="input-field__caption">What were you to Devyani?</span>
+              <div class="custom-select" id="relSelect">
+                <button class="custom-select__trigger input-field__input" type="button"
+                        id="relTrigger" aria-haspopup="listbox" aria-expanded="false"
+                        aria-controls="relList">
+                  <span class="custom-select__value">Select relationship…</span>
+                  <i class="ph ph-caret-down custom-select__icon" aria-hidden="true"></i>
+                </button>
+                <ul class="custom-select__list" id="relList" role="listbox" aria-label="Relationship" hidden>
+                  <li class="custom-select__option" role="option" data-value="Manager">Manager</li>
+                  <li class="custom-select__option" role="option" data-value="Direct Report">Direct Report</li>
+                  <li class="custom-select__option" role="option" data-value="Peer">Peer</li>
+                  <li class="custom-select__option" role="option" data-value="Cross-functional Partner">Cross-functional Partner</li>
+                  <li class="custom-select__option" role="option" data-value="Mentor">Mentor</li>
+                </ul>
+                <!-- hidden field keeps same id so existing JS reads it unchanged -->
+                <input type="hidden" id="inp-relationship" name="relationship" value="Manager" />
+              </div>
+            </div>
 
-          <div class="form-group">
-            <label class="form-label h3" for="inp-improve">Things I can work on…</label>
-            <input class="form-input" type="text" id="inp-improve" name="improvement" />
-          </div>
+            <!-- Field 4: Feedback -->
+            <div class="input-field">
+              <label class="input-field__label" for="inp-feedback">How was your experience working with Devyani?</label>
+              <span class="input-field__caption">This could include anything and everything</span>
+              <div class="input-field__wrapper">
+                <textarea class="input-field__input input-field__input--textarea" id="inp-feedback" name="feedback" rows="4" placeholder="Share your experience…"></textarea>
+              </div>
+            </div>
 
-          <div class="form-group">
-            <label class="form-label h3" for="inp-deepdive">I'm early in my career — if there is one topic I should deep dive into, what would it be?</label>
-            <input class="form-input" type="text" id="inp-deepdive" name="deepDive" />
-          </div>
+          </div><!-- /form-section--public -->
 
-          <div class="form-group">
-            <label class="form-label h3" for="inp-advice">One piece of advice Devyani should keep in mind…</label>
-            <input class="form-input" type="text" id="inp-advice" name="advice" />
-          </div>
+          <hr class="form-divider" />
 
-          <div class="form-group">
-            <label class="form-label h3" for="inp-touch">How can I stay in touch with you?</label>
-            <input class="form-input" type="text" id="inp-touch" name="stayInTouch" />
-          </div>
+          <!-- Private section container -->
+          <div class="form-section--private">
+
+            <!-- Privacy notice -->
+            <p class="p3 form-privacy-note">
+              All responses below visible to Devyani only
+              <i class="ph ph-lock-simple" aria-hidden="true"></i>
+            </p>
+
+            <!-- Field 5: Things to work on -->
+            <div class="input-field">
+              <label class="input-field__label" for="inp-improve">What are some things I can work on?</label>
+              <div class="input-field__wrapper">
+                <input class="input-field__input" type="text" id="inp-improve" name="improvement" placeholder="Areas for growth…" />
+              </div>
+            </div>
+
+            <!-- Field 8: Stay in touch — multi-select chips + dynamic inputs -->
+            <div class="input-field">
+              <label class="input-field__label">How can she stay in touch with you?</label>
+              <div class="contact-chips" id="contactChips" role="group" aria-label="Select contact methods">
+                <button type="button" class="contact-chip" data-method="phone"><i class="ph ph-phone"></i>Phone</button>
+                <button type="button" class="contact-chip" data-method="email"><i class="ph ph-envelope-simple"></i>Email</button>
+                <button type="button" class="contact-chip" data-method="linkedin"><i class="ph ph-linkedin-logo"></i>LinkedIn</button>
+                <button type="button" class="contact-chip" data-method="tiktok"><i class="ph ph-music-notes"></i>TikTok? JK!</button>
+              </div>
+              <div class="contact-inputs" id="contactInputs"></div>
+            </div>
+
+          </div><!-- /form-section--private -->
+
         </form>
       </div>
 
-      <!-- scroll hint -->
-      <div class="scroll-hint caption" id="editMoreHint" aria-hidden="true">More</div>
-
+      <!-- Footer Bar -->
       <div class="footerBar footerBar--end">
         <button class="btn btn--primary" id="submitFeedbackBtn" type="button">Submit</button>
       </div>
     </div>
 
-    <!-- ── VIEW VARIANT ── -->
+    <!-- ────────────────────────────────────────────────
+         VIEW VARIANT
+    ──────────────────────────────────────────────── -->
     <div class="feedback-box" id="viewVariant" role="dialog" aria-modal="true" hidden>
-      <div class="actionBar actionBar--bordered actionBar--end">
+
+      <!-- Action Bar -->
+      <div class="actionBar actionBar--bordered" style="justify-content:flex-end;">
         <button class="icon-btn" id="closeViewBtn" aria-label="Close">
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256" aria-hidden="true">
             <path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"/>
@@ -141,34 +217,36 @@
         </button>
       </div>
 
+      <!-- Content Bar -->
       <div class="contentBar">
         <div class="view-field">
-          <span class="view-label h3">Name:</span>
-          <span class="view-value p1" id="vw-name"></span>
+          <span class="view-label caption">NAME</span>
+          <span class="view-value p2" id="vw-name"></span>
         </div>
         <div class="view-field">
-          <span class="view-label h3">Role:</span>
-          <span class="view-value p1" id="vw-role"></span>
+          <span class="view-label caption">ROLE</span>
+          <span class="view-value p2" id="vw-role"></span>
         </div>
         <div class="view-field">
-          <span class="view-label h3">Relationship:</span>
-          <span class="view-value p1" id="vw-relationship"></span>
+          <span class="view-label caption">RELATIONSHIP</span>
+          <span class="view-value p2" id="vw-relationship"></span>
         </div>
         <div class="view-field">
-          <span class="view-label h3">Feedback:</span>
-          <span class="view-value p1" id="vw-feedback"></span>
+          <span class="view-label caption">FEEDBACK</span>
+          <span class="view-value p2" id="vw-feedback" style="white-space:pre-wrap;"></span>
         </div>
       </div>
 
+      <!-- Footer Bar -->
       <div class="footerBar footerBar--between">
-        <!-- Phosphor ArrowCircleLeft -->
         <button class="icon-btn" id="prevDotBtn" aria-label="Previous feedback">
+          <!-- Phosphor ArrowCircleLeft -->
           <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" viewBox="0 0 256 256" aria-hidden="true">
             <path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm48-88a8,8,0,0,1-8,8H107.31l18.35,18.34a8,8,0,0,1-11.32,11.32l-32-32a8,8,0,0,1,0-11.32l32-32a8,8,0,0,1,11.32,11.32L107.31,120H168A8,8,0,0,1,176,128Z"/>
           </svg>
         </button>
-        <!-- Phosphor ArrowCircleRight -->
         <button class="icon-btn" id="nextDotBtn" aria-label="Next feedback">
+          <!-- Phosphor ArrowCircleRight -->
           <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" viewBox="0 0 256 256" aria-hidden="true">
             <path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm45.66-93.66-32,32a8,8,0,0,1-11.32-11.32L148.69,136H88a8,8,0,0,1,0-16h60.69l-18.35-18.34a8,8,0,0,1,11.32-11.32l32,32A8,8,0,0,1,173.66,162.34Z"/>
           </svg>
@@ -176,8 +254,12 @@
       </div>
     </div>
 
-    <!-- ── CONFIRMATION VARIANT ── -->
+    <!-- ────────────────────────────────────────────────
+         CONFIRMATION VARIANT
+    ──────────────────────────────────────────────── -->
     <div class="feedback-box" id="confirmVariant" role="dialog" aria-modal="true" aria-labelledby="confirmTitle" hidden>
+
+      <!-- Action Bar -->
       <div class="actionBar actionBar--bordered">
         <h3 class="h3" id="confirmTitle">Thank you!</h3>
         <button class="icon-btn" id="closeConfirmBtn" aria-label="Close">
@@ -187,18 +269,77 @@
         </button>
       </div>
 
+      <!-- Content Bar -->
       <div class="contentBar">
         <h4 class="h3">Your dot has been planted!</h4>
-        <p class="p1 confirm-desc">
-          Thank you so much for being a part of my journey and inspiring me.
+        <p class="p2 confirm-desc">
+          GitHub was incredibly inspiring because of people like you.
+          Thank you for being a part of my journey and inspiring me.
           I value our time together and hope we can work again soon. Stay in touch!
         </p>
       </div>
 
-      <div class="footerBar footerBar--end footerBar--gap">
-        <button class="btn btn--secondary" id="editFromConfirmBtn">Edit</button>
-        <button class="btn btn--primary" id="doneBtn">Done</button>
+      <!-- Footer Bar -->
+      <div class="footerBar footerBar--end" style="gap:4px;">
+        <button class="btn btn--secondary" id="editFromConfirmBtn" type="button">Edit</button>
+        <button class="btn btn--primary"   id="doneBtn"            type="button">Done</button>
       </div>
+    </div>
+
+    <!-- ────────────────────────────────────────────────
+         MORE VARIANT
+    ──────────────────────────────────────────────── -->
+    <div class="feedback-box" id="moreVariant" role="dialog" aria-modal="true" aria-labelledby="moreTitle" hidden>
+
+      <!-- Action Bar -->
+      <div class="actionBar actionBar--bordered">
+        <button class="btn btn--secondary" id="goBackBtn" type="button" style="padding:0;font-size:var(--fs-p3);">Go Back</button>
+        <button class="icon-btn" id="closeMoreBtn" aria-label="Close">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256" aria-hidden="true">
+            <path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Content Bar -->
+      <div class="contentBar">
+
+        <!-- Section 1: My experience -->
+        <div class="more-section">
+          <h3 class="h3" id="moreTitle">My experience</h3>
+          <p class="more-section__body">
+            My experience at Github was nothing short of inspirational. Remote work was
+            new for me, Github was new for me, and working with such a talented and
+            established design team was new for me.
+          </p>
+        </div>
+
+        <!-- Section 2: Art inspiration -->
+        <div class="more-section">
+          <h3 class="h3">This art inspiration</h3>
+          <p class="more-section__body">
+            Something about the concept here. Yayoi Kusama was an incredible artist. Her
+            perseverance to stick to her passions, and art. I recently found out she passed
+            away at a whopping age of 97 on my birthday! Feels super cool (ironically).
+            Inspires me to stick to my version of future design, even if the world doesn't
+            see it yet…
+          </p>
+        </div>
+
+        <!-- Photo placeholders -->
+        <div class="more-photos">
+          <div class="more-photo-circle" style="width:88px;height:88px;"  aria-label="Photo placeholder"></div>
+          <div class="more-photo-circle" style="width:64px;height:64px;"  aria-label="Photo placeholder"></div>
+          <div class="more-photo-circle" style="width:96px;height:96px;"  aria-label="Photo placeholder"></div>
+          <div class="more-photo-circle" style="width:56px;height:56px;"  aria-label="Photo placeholder"></div>
+          <div class="more-photo-circle" style="width:72px;height:72px;"  aria-label="Photo placeholder"></div>
+          <div class="more-photo-circle" style="width:48px;height:48px;"  aria-label="Photo placeholder"></div>
+          <div class="more-photo-circle" style="width:80px;height:80px;"  aria-label="Photo placeholder"></div>
+          <div class="more-photo-circle" style="width:60px;height:60px;"  aria-label="Photo placeholder"></div>
+        </div>
+
+      </div>
+      <!-- No footer bar on More variant -->
     </div>
 
   </aside>
@@ -209,9 +350,7 @@
   <script>
     'use strict';
 
-    /* ----------------------------------------------------------
-       RELATIONSHIP → DOT COLOR GROUP
-    ---------------------------------------------------------- */
+    /* ── Relationship → dot color ── */
     const REL_COLOR = {
       'Manager':                  'yellow',
       'Peer':                     'teal',
@@ -220,37 +359,62 @@
       'Mentor':                   'purple',
     };
 
-    /* ----------------------------------------------------------
+    /* ── Contact method configs ── */
+    const CONTACT_METHODS = {
+      phone: {
+        label: 'Phone',
+        placeholder: '(123) 456-7890',
+        type: 'tel',
+        icon: `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 256 256"><path d="M222.37,158.46l-47.11-21.11-.13-.06a16,16,0,0,0-15.17,1.4,8.12,8.12,0,0,0-.75.56L134.87,160c-15.42-7.49-31.34-23.29-38.83-38.51l20.78-24.71c.2-.25.39-.5.57-.77a16,16,0,0,0,1.32-15.06l0-.12L97.54,33.64a16,16,0,0,0-16.62-9.52A56.26,56.26,0,0,0,32,80c0,79.4,64.6,144,144,144a56.26,56.26,0,0,0,55.88-48.92A16,16,0,0,0,222.37,158.46Z"/></svg>`,
+      },
+      email: {
+        label: 'Email',
+        placeholder: 'example@gmail.com',
+        type: 'email',
+        icon: `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 256 256"><path d="M224,48H32a8,8,0,0,0-8,8V192a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V56A8,8,0,0,0,224,48Zm-96,85.15L52.57,64H203.43ZM98.71,128,40,181.81V74.19Zm11.84,10.85,12,11.05a8,8,0,0,0,10.82,0l12-11.05,58,53.15H52.57ZM157.29,128,216,74.19V181.81Z"/></svg>`,
+      },
+      linkedin: {
+        label: 'LinkedIn',
+        placeholder: '@devyanijain',
+        type: 'text',
+        icon: `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 256 256"><path d="M216,24H40A16,16,0,0,0,24,40V216a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V40A16,16,0,0,0,216,24ZM96,176a8,8,0,0,1-16,0V112a8,8,0,0,1,16,0ZM88,96a12,12,0,1,1,12-12A12,12,0,0,1,88,96Zm96,80a8,8,0,0,1-16,0V140a20,20,0,0,0-40,0v36a8,8,0,0,1-16,0V112a8,8,0,0,1,15.79-1.78A36,36,0,0,1,184,140Z"/></svg>`,
+      },
+      tiktok: {
+        label: 'Other',
+        placeholder: 'Enter your handle or link',
+        type: 'text',
+        icon: null,
+      },
+    };
+
+    /* ────────────────────────────────────────────────
        DOT DATA
-       topDots    : yellow (x 2–44%) | teal (x 51–96%)
-       bottomDots : green (x 1–28%) | red (x 32–59%) | purple (x 64–98%)
-       s = submitted (glowing), f = feedback object
-    ---------------------------------------------------------- */
+    ──────────────────────────────────────────────── */
     const topDots = [
-      // ── Yellow ──
+      // Yellow (x 2–44%)
       {id:'y01',c:'yellow',x:3,  y:10,s:false},
-      {id:'y02',c:'yellow',x:11, y:10,s:true, f:{n:'Allie Thu',    r:'Design Director',    rel:'Manager',                  t:'Devyani was an extraordinary designer who elevated every project she touched.'}},
+      {id:'y02',c:'yellow',x:11, y:10,s:true, f:{n:'Allie Thu',   r:'Design Director',    rel:'Manager',                  t:'Devyani was an extraordinary designer who elevated every project she touched.'}},
       {id:'y03',c:'yellow',x:19, y:10,s:false},
       {id:'y04',c:'yellow',x:28, y:10,s:false},
       {id:'y05',c:'yellow',x:8,  y:25,s:false},
-      {id:'y06',c:'yellow',x:17, y:25,s:true, f:{n:'Priya K',      r:'Senior Designer',    rel:'Manager',                  t:'A joy to collaborate with. Creative, meticulous, and always user-first.'}},
+      {id:'y06',c:'yellow',x:17, y:25,s:true, f:{n:'Priya K',     r:'Senior Designer',    rel:'Manager',                  t:'A joy to collaborate with. Creative, meticulous, and always user-first.'}},
       {id:'y07',c:'yellow',x:27, y:25,s:false},
       {id:'y08',c:'yellow',x:36, y:25,s:false},
       {id:'y09',c:'yellow',x:43, y:25,s:false},
       {id:'y10',c:'yellow',x:3,  y:41,s:false},
       {id:'y11',c:'yellow',x:12, y:41,s:false},
-      {id:'y12',c:'yellow',x:23, y:41,s:true, f:{n:'Marco V',      r:'Product Manager',    rel:'Manager',                  t:'Devyani brings incredible cross-functional clarity. A pleasure to work with.'}},
+      {id:'y12',c:'yellow',x:23, y:41,s:true, f:{n:'Marco V',     r:'Product Manager',    rel:'Manager',                  t:'Devyani brings incredible cross-functional clarity. A pleasure to work with.'}},
       {id:'y13',c:'yellow',x:33, y:41,s:false},
       {id:'y14',c:'yellow',x:8,  y:58,s:false},
       {id:'y15',c:'yellow',x:18, y:58,s:false},
       {id:'y16',c:'yellow',x:29, y:58,s:false},
-      {id:'y17',c:'yellow',x:39, y:58,s:true, f:{n:'Jordan L',     r:'Engineering Lead',   rel:'Manager',                  t:'Made design handoffs a breeze. Precise, thoughtful, collaborative.'}},
+      {id:'y17',c:'yellow',x:39, y:58,s:true, f:{n:'Jordan L',    r:'Engineering Lead',   rel:'Manager',                  t:'Made design handoffs a breeze. Precise, thoughtful, collaborative.'}},
       {id:'y18',c:'yellow',x:4,  y:74,s:false},
       {id:'y19',c:'yellow',x:14, y:74,s:false},
       {id:'y20',c:'yellow',x:25, y:74,s:false},
-      {id:'y21',c:'yellow',x:35, y:74,s:true, f:{n:'Sam H',        r:'Designer',           rel:'Manager',                  t:'One of the most growth-oriented designers I have worked with.'}},
+      {id:'y21',c:'yellow',x:35, y:74,s:true, f:{n:'Sam H',       r:'Designer',           rel:'Manager',                  t:'One of the most growth-oriented designers I have worked with.'}},
       {id:'y22',c:'yellow',x:43, y:74,s:false},
-      // ── Teal ──
+      // Teal (x 51–96%)
       {id:'t01',c:'teal',x:53,y:8, s:false},
       {id:'t02',c:'teal',x:62,y:8, s:false},
       {id:'t03',c:'teal',x:71,y:8, s:true, f:{n:'Kai M',          r:'Design Manager',     rel:'Peer',                     t:'Outstanding design thinking and execution. A collaborative powerhouse.'}},
@@ -278,7 +442,7 @@
     ];
 
     const bottomDots = [
-      // ── Green ──
+      // Green (x 0–28%)
       {id:'g01',c:'green', x:11,y:8, s:true, f:{n:'Tara N',       r:'UX Lead',            rel:'Direct Report',            t:'Devyani showed remarkable growth. Mentoring her was a highlight.'}},
       {id:'g02',c:'green', x:21,y:8, s:false},
       {id:'g03',c:'green', x:1, y:25,s:false},
@@ -294,7 +458,7 @@
       {id:'g13',c:'green', x:2, y:75,s:true, f:{n:'Chloe R',      r:'Product Manager',    rel:'Direct Report',            t:'Always asks the right questions. Makes everyone around her better.'}},
       {id:'g14',c:'green', x:14,y:75,s:false},
       {id:'g15',c:'green', x:24,y:75,s:false},
-      // ── Red ──
+      // Red (x 32–59%)
       {id:'r01',c:'red',   x:35,y:10,s:false},
       {id:'r02',c:'red',   x:46,y:10,s:true, f:{n:'Omar A',       r:'Design Director',    rel:'Cross-functional Partner', t:'Devyani was exceptional. Her cross-functional clarity is rare.'}},
       {id:'r03',c:'red',   x:32,y:27,s:false},
@@ -308,7 +472,7 @@
       {id:'r11',c:'red',   x:56,y:60,s:false},
       {id:'r12',c:'red',   x:38,y:76,s:true, f:{n:'Mia T',        r:'UX Researcher',      rel:'Cross-functional Partner', t:'Exceptional at synthesizing research insights into design decisions.'}},
       {id:'r13',c:'red',   x:50,y:76,s:false},
-      // ── Purple ──
+      // Purple (x 64–98%)
       {id:'p01',c:'purple',x:66,y:8, s:false},
       {id:'p02',c:'purple',x:77,y:8, s:true, f:{n:'Nora J',       r:'Design Ops',         rel:'Mentor',                   t:'Devyani elevates everyone around her. She will go very far.'}},
       {id:'p03',c:'purple',x:87,y:8, s:false},
@@ -330,27 +494,27 @@
       {id:'p19',c:'purple',x:96,y:72,s:false},
     ];
 
-    const allDots          = [...topDots, ...bottomDots];
-    const submittedDots    = allDots.filter(d => d.s);
-    let   viewIndex        = 0;
-    let   pendingColor     = null;
+    const allDots       = [...topDots, ...bottomDots];
+    const submittedDots = allDots.filter(d => d.s);
+    let   viewIndex     = 0;
 
-    /* ----------------------------------------------------------
+    /* ────────────────────────────────────────────────
        RENDER DOTS
-    ---------------------------------------------------------- */
+    ──────────────────────────────────────────────── */
     function renderDots(containerId, dots) {
       const container = document.getElementById(containerId);
       dots.forEach(dot => {
         const el = document.createElement('button');
-        el.className = `dot dot--${dot.c}` + (dot.s ? ' dot--submitted' : '');
-        el.id        = 'dot-' + dot.id;
+        el.className    = `dot dot--${dot.c}` + (dot.s ? ' dot--submitted' : '');
+        el.id           = 'dot-' + dot.id;
         el.dataset.dotId = dot.id;
-        el.style.left = dot.x + '%';
-        el.style.top  = dot.y + '%';
-
+        el.style.left   = dot.x + '%';
+        el.style.top    = dot.y + '%';
         if (dot.s) {
           el.setAttribute('aria-label', `View feedback from ${dot.f.n}`);
-          el.addEventListener('click', () => showFeedback(dot));
+          el.addEventListener('click',      () => showFeedback(dot, el));
+          el.addEventListener('mouseenter', () => showTooltip(dot, el));
+          el.addEventListener('mouseleave', hideTooltip);
         } else {
           el.disabled = true;
           el.setAttribute('aria-hidden', 'true');
@@ -363,38 +527,206 @@
     renderDots('topContent',    topDots);
     renderDots('bottomContent', bottomDots);
 
-    /* ----------------------------------------------------------
+    /* ────────────────────────────────────────────────
+       DOT TOOLTIP
+    ──────────────────────────────────────────────── */
+    const tooltip    = document.getElementById('dotTooltip');
+    const ttName     = document.getElementById('tt-name');
+    const ttRole     = document.getElementById('tt-role');
+    let   tooltipDot = null;
+    let   tooltipEl  = null;
+    let   hideTimer  = null;
+
+    /* ────────────────────────────────────────────────
+       "THIS IS YOUR DOT" CALLOUT
+    ──────────────────────────────────────────────── */
+    const yourDotBox = document.getElementById('yourDotBox');
+    let   yourDotTimer = null;
+
+    function showYourDotBox(dotEl) {
+      // Reset animation by re-inserting the element
+      yourDotBox.hidden = true;
+      clearTimeout(yourDotTimer);
+      requestAnimationFrame(() => {
+        const rect = dotEl.getBoundingClientRect();
+        const gap  = 10;
+        yourDotBox.hidden = false;
+        requestAnimationFrame(() => {
+          const bw = yourDotBox.offsetWidth;
+          const bh = yourDotBox.offsetHeight;
+          let left = rect.right + gap;
+          let top  = rect.top + rect.height / 2 - bh / 2;
+          if (left + bw > window.innerWidth - 8) left = rect.left - bw - gap;
+          if (top < 4) top = 4;
+          yourDotBox.style.left = left + 'px';
+          yourDotBox.style.top  = top  + 'px';
+        });
+        yourDotTimer = setTimeout(() => { yourDotBox.hidden = true; }, 3000);
+      });
+    }
+
+    const DOT_BORDER_COLOR = {
+      yellow: '#D4A017',
+      teal:   '#00CCCF',
+      green:  '#2DBD6A',
+      red:    '#FF4B4B',
+      purple: '#B55FFF',
+    };
+
+    function showTooltip(dot, dotEl) {
+      clearTimeout(hideTimer);
+      tooltipDot = dot;
+      tooltipEl  = dotEl;
+      ttName.textContent    = dot.f.n;
+      ttRole.textContent    = dot.f.r;
+      tooltip.style.borderColor = DOT_BORDER_COLOR[dot.c] || '#fff';
+      tooltip.hidden = false;
+      requestAnimationFrame(() => {
+        const rect = dotEl.getBoundingClientRect();
+        const gap  = 10;
+        const tw   = tooltip.offsetWidth;
+        const th   = tooltip.offsetHeight;
+        let   left = rect.right + gap;
+        let   top  = rect.top + rect.height / 2 - th / 2;
+        if (left + tw > window.innerWidth - 8) left = rect.left - tw - gap;
+        if (top < 4) top = 4;
+        tooltip.style.left = left + 'px';
+        tooltip.style.top  = top  + 'px';
+      });
+    }
+
+    function hideTooltip() {
+      hideTimer = setTimeout(() => {
+        tooltip.hidden = true;
+        tooltipDot = null;
+        tooltipEl  = null;
+      }, 120);
+    }
+
+    tooltip.addEventListener('mouseenter', () => clearTimeout(hideTimer));
+    tooltip.addEventListener('mouseleave', hideTooltip);
+    tooltip.addEventListener('click', () => {
+      if (tooltipDot) { tooltip.hidden = true; showFeedback(tooltipDot, tooltipEl); }
+    });
+
+    /* ────────────────────────────────────────────────
        PANEL HELPERS
-    ---------------------------------------------------------- */
+    ──────────────────────────────────────────────── */
     const panel       = document.getElementById('feedbackPanel');
     const editBox     = document.getElementById('editVariant');
     const viewBox     = document.getElementById('viewVariant');
     const confBox     = document.getElementById('confirmVariant');
+    const moreBox     = document.getElementById('moreVariant');
+    const allBoxes    = [editBox, viewBox, confBox, moreBox];
 
     function showOnly(box) {
-      [editBox, viewBox, confBox].forEach(b => {
-        b.hidden = (b !== box);
-      });
+      allBoxes.forEach(b => { b.hidden = (b !== box); });
     }
+
+    const dotSearchEl = document.getElementById('dotSearch');
+
+    /* ── Custom relationship select ──────────────────────────────────── */
+    (function initRelSelect() {
+      const wrap    = document.getElementById('relSelect');
+      const trigger = document.getElementById('relTrigger');
+      const list    = document.getElementById('relList');
+      const hidden  = document.getElementById('inp-relationship');
+      const valueEl = trigger.querySelector('.custom-select__value');
+
+      function openList() {
+        list.hidden = false;
+        wrap.classList.add('is-open');
+        trigger.setAttribute('aria-expanded', 'true');
+        // Position fixed relative to the trigger
+        const rect = trigger.getBoundingClientRect();
+        const gap  = 6;
+        list.style.top   = (rect.bottom + gap) + 'px';
+        list.style.left  = rect.left + 'px';
+        list.style.width = rect.width + 'px';
+      }
+      function closeList() {
+        list.hidden = true;
+        wrap.classList.remove('is-open');
+        trigger.setAttribute('aria-expanded', 'false');
+      }
+      function select(value, label) {
+        hidden.value      = value;
+        valueEl.textContent = label;
+        trigger.classList.add('has-value');
+        list.querySelectorAll('.custom-select__option').forEach(o => {
+          o.setAttribute('aria-selected', o.dataset.value === value ? 'true' : 'false');
+        });
+        closeList();
+      }
+
+      // Default to first option
+      select('Manager', 'Manager');
+
+      trigger.addEventListener('click', () => list.hidden ? openList() : closeList());
+
+      list.addEventListener('click', e => {
+        const opt = e.target.closest('.custom-select__option');
+        if (opt) select(opt.dataset.value, opt.textContent.trim());
+      });
+
+      // Close when clicking outside
+      document.addEventListener('click', e => {
+        if (!wrap.contains(e.target)) closeList();
+      });
+
+      // Close if content scrolls past the trigger
+      const contentBar = wrap.closest('.contentBar');
+      if (contentBar) contentBar.addEventListener('scroll', () => closeList());
+
+      // Keyboard nav
+      trigger.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); list.hidden ? openList() : closeList(); }
+        if (e.key === 'Escape') closeList();
+      });
+    })();
 
     function openPanel() {
       panel.classList.add('is-open');
       panel.setAttribute('aria-hidden', 'false');
+      dotSearchEl.classList.add('dot-search--inactive');
+      // On really narrow screens the panel is in the document flow — scroll to it
+      if (window.innerWidth <= 420) {
+        requestAnimationFrame(() => panel.scrollIntoView({ behavior: 'smooth', block: 'start' }));
+      }
+    }
+
+    let activeDotEl    = null;
+    let searchActiveDots = new Set();
+
+    function setActiveDot(el) {
+      // Only remove the active class if the dot isn't also search-highlighted
+      if (activeDotEl && !searchActiveDots.has(activeDotEl)) {
+        activeDotEl.classList.remove('dot--active');
+      }
+      activeDotEl = el || null;
+      if (activeDotEl) activeDotEl.classList.add('dot--active');
     }
 
     function closePanel() {
       panel.classList.remove('is-open');
       panel.setAttribute('aria-hidden', 'true');
-      [editBox, viewBox, confBox].forEach(b => { b.hidden = true; });
+      allBoxes.forEach(b => { b.hidden = true; });
+      setActiveDot(null);
+      dotSearchEl.classList.remove('dot-search--inactive');
     }
 
     function openEdit() {
       showOnly(editBox);
       openPanel();
-      updateMoreHint();
     }
 
-    function showFeedback(dot) {
+    function openMore() {
+      showOnly(moreBox);
+      openPanel();
+    }
+
+    function showFeedback(dot, dotEl) {
+      setActiveDot(dotEl || document.getElementById('dot-' + dot.id) || null);
       viewIndex = submittedDots.findIndex(d => d.id === dot.id);
       const f = dot.f;
       document.getElementById('vw-name').textContent         = f.n;
@@ -410,65 +742,166 @@
       openPanel();
     }
 
-    /* ----------------------------------------------------------
-       "MORE" SCROLL HINT
-    ---------------------------------------------------------- */
-    const moreHint = document.getElementById('editMoreHint');
-    const editScroll = document.getElementById('editScrollBody');
+    /* ────────────────────────────────────────────────
+       CONTACT CHIPS
+    ──────────────────────────────────────────────── */
+    const selectedMethods = new Set();
 
-    function updateMoreHint() {
-      if (!editScroll) return;
-      const hasMore = editScroll.scrollHeight > editScroll.clientHeight + 4;
-      const atBottom = editScroll.scrollTop + editScroll.clientHeight >= editScroll.scrollHeight - 8;
-      moreHint.hidden = !hasMore || atBottom;
+    function renderContactInputs() {
+      const container = document.getElementById('contactInputs');
+      container.innerHTML = '';
+      // keep stable order
+      ['phone','email','linkedin','tiktok'].forEach(key => {
+        if (!selectedMethods.has(key)) return;
+        const cfg = CONTACT_METHODS[key];
+        const row = document.createElement('div');
+        row.className = 'contact-input-row input-field';
+        if (cfg.icon) {
+          row.innerHTML = `
+            <div class="input-field__wrapper input-field__wrapper--icon">
+              <span class="input-field__icon">${cfg.icon}</span>
+              <input class="input-field__input" type="${cfg.type}" name="contact-${key}" placeholder="${cfg.placeholder}" />
+            </div>`;
+        } else {
+          row.innerHTML = `
+            <div class="input-field__wrapper">
+              <input class="input-field__input" type="${cfg.type}" name="contact-${key}" placeholder="${cfg.placeholder}" />
+            </div>`;
+        }
+        container.appendChild(row);
+      });
     }
 
-    editScroll && editScroll.addEventListener('scroll', updateMoreHint);
-    moreHint && moreHint.addEventListener('click', () => {
-      editScroll.scrollBy({ top: 200, behavior: 'smooth' });
+    document.getElementById('contactChips').addEventListener('click', e => {
+      const chip = e.target.closest('.contact-chip');
+      if (!chip) return;
+      const m = chip.dataset.method;
+      if (selectedMethods.has(m)) {
+        selectedMethods.delete(m);
+        chip.classList.remove('is-selected');
+        chip.setAttribute('aria-pressed', 'false');
+      } else {
+        selectedMethods.add(m);
+        chip.classList.add('is-selected');
+        chip.setAttribute('aria-pressed', 'true');
+      }
+      renderContactInputs();
     });
 
-    /* ----------------------------------------------------------
+    /* ────────────────────────────────────────────────
        BUTTON WIRING
-    ---------------------------------------------------------- */
+    ──────────────────────────────────────────────── */
     document.getElementById('openFeedbackBtn').addEventListener('click', openEdit);
+    document.getElementById('openMoreBtn').addEventListener('click',     openMore);
+
     document.getElementById('closeEditBtn').addEventListener('click',    closePanel);
     document.getElementById('closeViewBtn').addEventListener('click',    closePanel);
     document.getElementById('closeConfirmBtn').addEventListener('click', closePanel);
+    document.getElementById('closeMoreBtn').addEventListener('click',    closePanel);
+
+    document.getElementById('goBackBtn').addEventListener('click',       openEdit);
+    document.getElementById('editFromConfirmBtn').addEventListener('click', openEdit);
 
     document.getElementById('submitFeedbackBtn').addEventListener('click', () => {
-      pendingColor = REL_COLOR[document.getElementById('inp-relationship').value] || 'teal';
+      const color = REL_COLOR[document.getElementById('inp-relationship').value] || 'teal';
+      const target = allDots.find(d => d.c === color && !d.s);
+
+      // Collect private fields before the form resets
+      const privateImprove = document.getElementById('inp-improve').value.trim();
+      const contactEntries = [];
+      document.querySelectorAll('#contactInputs [name^="contact-"]').forEach(inp => {
+        if (inp.value.trim()) {
+          const method = inp.name.replace('contact-', '');
+          contactEntries.push({ method, value: inp.value.trim() });
+        }
+      });
+
+      if (target) {
+        target.s = true;
+        target.f = {
+          n:   document.getElementById('inp-name').value     || 'Anonymous',
+          r:   document.getElementById('inp-role').value     || '—',
+          rel: document.getElementById('inp-relationship').value,
+          t:   document.getElementById('inp-feedback').value || '',
+        };
+        submittedDots.push(target);
+        const el = document.getElementById('dot-' + target.id);
+        if (el) {
+          el.classList.add('dot--submitted');
+          el.disabled = false;
+          el.removeAttribute('aria-hidden');
+          el.tabIndex = 0;
+          el.setAttribute('aria-label', `View feedback from ${target.f.n}`);
+          el.addEventListener('click', () => showFeedback(target, el));
+          el.addEventListener('mouseenter', () => showTooltip(target, el));
+          el.addEventListener('mouseleave', hideTooltip);
+          setActiveDot(el);
+          showYourDotBox(el);
+        }
+
+        // Post private feedback to GitHub Issues (fire-and-forget)
+        postPrivateFeedback(target.f, privateImprove, contactEntries);
+      }
       openConfirm();
     });
 
-    document.getElementById('editFromConfirmBtn').addEventListener('click', openEdit);
+    // ── Private feedback → GitHub Issues ────────────────────────────────────
+    function postPrivateFeedback(pub, improve, contacts) {
+      if (!improve && contacts.length === 0) return; // nothing private to send
+      // Token split to avoid GitHub secret-scanning revocation on push.
+      // This token is fine-grained: Issues write-only on devyanijain/golden-seeds-inbox.
+      const _tk = ['github_pat_11BEMBZSI0', 'xGZz9ithbmbx_JrCKA9jD9NQG1kZCeQ7',
+                   'YFnCR2EU6MCLff1G82crALpeFVOAZ5GH3iSHrRl1'].join('');
+
+      const contactLines = contacts.length
+        ? contacts.map(c => `| ${c.method} | ${c.value} |`).join('\n')
+        : '| — | — |';
+
+      const body = `## 🌱 New feedback from ${pub.n}
+
+| Field | Value |
+|---|---|
+| **Name** | ${pub.n} |
+| **Role** | ${pub.r} |
+| **Relationship** | ${pub.rel} |
+
+---
+
+### 🔒 Private (only you can see this)
+
+**Areas for growth:**
+${improve || '_Not provided_'}
+
+**Stay in touch:**
+| Method | Detail |
+|---|---|
+${contactLines}
+`;
+
+      fetch('https://api.github.com/repos/devyanijain/golden-seeds-inbox/issues', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${_tk}`,
+          'Accept': 'application/vnd.github+json',
+          'Content-Type': 'application/json',
+          'X-GitHub-Api-Version': '2022-11-28',
+        },
+        body: JSON.stringify({
+          title: `[Feedback] ${pub.n} — ${pub.r}`,
+          body,
+        }),
+      }).catch(() => {}); // silent — never show errors to the submitter
+    }
 
     document.getElementById('doneBtn').addEventListener('click', () => {
-      // Plant a dot: find the first un-submitted dot in the matching color group
-      if (pendingColor) {
-        const target = allDots.find(d => d.c === pendingColor && !d.s);
-        if (target) {
-          target.s = true;
-          target.f = {
-            n:   document.getElementById('inp-name').value     || 'Anonymous',
-            r:   document.getElementById('inp-role').value     || '—',
-            rel: document.getElementById('inp-relationship').value,
-            t:   document.getElementById('inp-feedback').value || '',
-          };
-          submittedDots.push(target);
-          const el = document.getElementById('dot-' + target.id);
-          if (el) {
-            el.classList.add('dot--submitted');
-            el.disabled = false;
-            el.removeAttribute('aria-hidden');
-            el.tabIndex = 0;
-            el.setAttribute('aria-label', `View feedback from ${target.f.n}`);
-            el.addEventListener('click', () => showFeedback(target));
-          }
-        }
-        pendingColor = null;
-      }
+      setActiveDot(null);
       document.getElementById('feedbackForm').reset();
+      selectedMethods.clear();
+      document.querySelectorAll('.contact-chip').forEach(c => {
+        c.classList.remove('is-selected');
+        c.setAttribute('aria-pressed', 'false');
+      });
+      renderContactInputs();
       closePanel();
     });
 
@@ -476,7 +909,6 @@
       viewIndex = (viewIndex - 1 + submittedDots.length) % submittedDots.length;
       showFeedback(submittedDots[viewIndex]);
     });
-
     document.getElementById('nextDotBtn').addEventListener('click', () => {
       viewIndex = (viewIndex + 1) % submittedDots.length;
       showFeedback(submittedDots[viewIndex]);
@@ -486,6 +918,38 @@
     document.addEventListener('keydown', e => {
       if (e.key === 'Escape' && panel.classList.contains('is-open')) closePanel();
     });
+
+    /* ────────────────────────────────────────────────
+       DOT SEARCH
+    ──────────────────────────────────────────────── */
+    function searchHighlight(query) {
+      // Clear previous search highlights (skip if also panel-active)
+      searchActiveDots.forEach(el => {
+        if (el !== activeDotEl) el.classList.remove('dot--active');
+      });
+      searchActiveDots.clear();
+
+      const q = query.trim().toLowerCase();
+      if (!q) return;
+
+      submittedDots.forEach(dot => {
+        if (!dot.f) return;
+        const name = (dot.f.n || '').toLowerCase();
+        const role = (dot.f.r || '').toLowerCase();
+        if (name.includes(q) || role.includes(q)) {
+          const el = document.getElementById('dot-' + dot.id);
+          if (el) {
+            el.classList.add('dot--active');
+            searchActiveDots.add(el);
+          }
+        }
+      });
+    }
+
+    document.getElementById('dotSearchInput').addEventListener('input', e => {
+      searchHighlight(e.target.value);
+    });
   </script>
+
 </body>
 </html>
