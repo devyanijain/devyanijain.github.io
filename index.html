@@ -139,14 +139,14 @@
                   <i class="ph ph-caret-down custom-select__icon" aria-hidden="true"></i>
                 </button>
                 <ul class="custom-select__list" id="relList" role="listbox" aria-label="Relationship" hidden>
-                  <li class="custom-select__option" role="option" data-value="Manager">Manager</li>
+                  <li class="custom-select__option" role="option" data-value="Manager/PM">Manager/PM</li>
                   <li class="custom-select__option" role="option" data-value="Direct Report">Direct Report</li>
-                  <li class="custom-select__option" role="option" data-value="Peer">Peer</li>
-                  <li class="custom-select__option" role="option" data-value="Cross-functional Partner">Cross-functional Partner</li>
-                  <li class="custom-select__option" role="option" data-value="Mentor">Mentor</li>
+                  <li class="custom-select__option" role="option" data-value="Colleague">Colleague</li>
+                  <li class="custom-select__option" role="option" data-value="Team/Engineer">Team/Engineer</li>
+                  <li class="custom-select__option" role="option" data-value="SF office buddy">SF office buddy</li>
                 </ul>
                 <!-- hidden field keeps same id so existing JS reads it unchanged -->
-                <input type="hidden" id="inp-relationship" name="relationship" value="Manager" />
+                <input type="hidden" id="inp-relationship" name="relationship" value="Manager/PM" />
               </div>
             </div>
 
@@ -352,11 +352,11 @@
 
     /* ── Relationship → dot color ── */
     const REL_COLOR = {
-      'Manager':                  'yellow',
-      'Peer':                     'teal',
+      'Manager/PM':                  'yellow',
+      'Colleague':                     'teal',
       'Direct Report':            'green',
-      'Cross-functional Partner': 'red',
-      'Mentor':                   'purple',
+      'Team/Engineer': 'red',
+      'SF office buddy':                   'purple',
     };
 
     /* ── Contact method configs ── */
@@ -393,51 +393,51 @@
     const topDots = [
       // Yellow (x 2–44%)
       {id:'y01',c:'yellow',x:3,  y:10,s:false},
-      {id:'y02',c:'yellow',x:11, y:10,s:true, f:{n:'Allie Thu',   r:'Design Director',    rel:'Manager',                  t:'Devyani was an extraordinary designer who elevated every project she touched.'}},
+      {id:'y02',c:'yellow',x:11, y:10,s:true, f:{n:'Allie Thu',   r:'Design Director',    rel:'Manager/PM',                  t:'Devyani was an extraordinary designer who elevated every project she touched.'}},
       {id:'y03',c:'yellow',x:19, y:10,s:false},
       {id:'y04',c:'yellow',x:28, y:10,s:false},
       {id:'y05',c:'yellow',x:8,  y:25,s:false},
-      {id:'y06',c:'yellow',x:17, y:25,s:true, f:{n:'Priya K',     r:'Senior Designer',    rel:'Manager',                  t:'A joy to collaborate with. Creative, meticulous, and always user-first.'}},
+      {id:'y06',c:'yellow',x:17, y:25,s:true, f:{n:'Priya K',     r:'Senior Designer',    rel:'Manager/PM',                  t:'A joy to collaborate with. Creative, meticulous, and always user-first.'}},
       {id:'y07',c:'yellow',x:27, y:25,s:false},
       {id:'y08',c:'yellow',x:36, y:25,s:false},
       {id:'y09',c:'yellow',x:43, y:25,s:false},
       {id:'y10',c:'yellow',x:3,  y:41,s:false},
       {id:'y11',c:'yellow',x:12, y:41,s:false},
-      {id:'y12',c:'yellow',x:23, y:41,s:true, f:{n:'Marco V',     r:'Product Manager',    rel:'Manager',                  t:'Devyani brings incredible cross-functional clarity. A pleasure to work with.'}},
+      {id:'y12',c:'yellow',x:23, y:41,s:true, f:{n:'Marco V',     r:'Product Manager',    rel:'Manager/PM',                  t:'Devyani brings incredible cross-functional clarity. A pleasure to work with.'}},
       {id:'y13',c:'yellow',x:33, y:41,s:false},
       {id:'y14',c:'yellow',x:8,  y:58,s:false},
       {id:'y15',c:'yellow',x:18, y:58,s:false},
       {id:'y16',c:'yellow',x:29, y:58,s:false},
-      {id:'y17',c:'yellow',x:39, y:58,s:true, f:{n:'Jordan L',    r:'Engineering Lead',   rel:'Manager',                  t:'Made design handoffs a breeze. Precise, thoughtful, collaborative.'}},
+      {id:'y17',c:'yellow',x:39, y:58,s:true, f:{n:'Jordan L',    r:'Engineering Lead',   rel:'Manager/PM',                  t:'Made design handoffs a breeze. Precise, thoughtful, collaborative.'}},
       {id:'y18',c:'yellow',x:4,  y:74,s:false},
       {id:'y19',c:'yellow',x:14, y:74,s:false},
       {id:'y20',c:'yellow',x:25, y:74,s:false},
-      {id:'y21',c:'yellow',x:35, y:74,s:true, f:{n:'Sam H',       r:'Designer',           rel:'Manager',                  t:'One of the most growth-oriented designers I have worked with.'}},
+      {id:'y21',c:'yellow',x:35, y:74,s:true, f:{n:'Sam H',       r:'Designer',           rel:'Manager/PM',                  t:'One of the most growth-oriented designers I have worked with.'}},
       {id:'y22',c:'yellow',x:43, y:74,s:false},
       // Teal (x 51–96%)
       {id:'t01',c:'teal',x:53,y:8, s:false},
       {id:'t02',c:'teal',x:62,y:8, s:false},
-      {id:'t03',c:'teal',x:71,y:8, s:true, f:{n:'Kai M',          r:'Design Manager',     rel:'Peer',                     t:'Outstanding design thinking and execution. A collaborative powerhouse.'}},
+      {id:'t03',c:'teal',x:71,y:8, s:true, f:{n:'Kai M',          r:'Design Manager',     rel:'Colleague',                     t:'Outstanding design thinking and execution. A collaborative powerhouse.'}},
       {id:'t04',c:'teal',x:81,y:8, s:false},
       {id:'t05',c:'teal',x:91,y:8, s:false},
       {id:'t06',c:'teal',x:55,y:23,s:false},
       {id:'t07',c:'teal',x:65,y:23,s:false},
-      {id:'t08',c:'teal',x:75,y:23,s:true, f:{n:'Lin C',          r:'Staff Engineer',     rel:'Peer',                     t:'Devyani bridged design and engineering beautifully. A true systems thinker.'}},
+      {id:'t08',c:'teal',x:75,y:23,s:true, f:{n:'Lin C',          r:'Staff Engineer',     rel:'Colleague',                     t:'Devyani bridged design and engineering beautifully. A true systems thinker.'}},
       {id:'t09',c:'teal',x:85,y:23,s:false},
       {id:'t10',c:'teal',x:93,y:23,s:false},
       {id:'t11',c:'teal',x:51,y:39,s:false},
-      {id:'t12',c:'teal',x:61,y:39,s:true, f:{n:'Dani P',         r:'Product Designer',   rel:'Peer',                     t:'Creative, articulate, and incredibly fun to collaborate with.'}},
+      {id:'t12',c:'teal',x:61,y:39,s:true, f:{n:'Dani P',         r:'Product Designer',   rel:'Colleague',                     t:'Creative, articulate, and incredibly fun to collaborate with.'}},
       {id:'t13',c:'teal',x:71,y:39,s:false},
       {id:'t14',c:'teal',x:81,y:39,s:false},
       {id:'t15',c:'teal',x:90,y:39,s:false},
       {id:'t16',c:'teal',x:57,y:55,s:false},
-      {id:'t17',c:'teal',x:67,y:55,s:true, f:{n:'Alex T',         r:'Research Lead',      rel:'Peer',                     t:'Deep empathy and excellent research skills. Devyani is a thoughtful advocate.'}},
+      {id:'t17',c:'teal',x:67,y:55,s:true, f:{n:'Alex T',         r:'Research Lead',      rel:'Colleague',                     t:'Deep empathy and excellent research skills. Devyani is a thoughtful advocate.'}},
       {id:'t18',c:'teal',x:77,y:55,s:false},
       {id:'t19',c:'teal',x:88,y:55,s:false},
       {id:'t20',c:'teal',x:52,y:70,s:false},
       {id:'t21',c:'teal',x:63,y:70,s:false},
       {id:'t22',c:'teal',x:73,y:70,s:false},
-      {id:'t23',c:'teal',x:84,y:70,s:true, f:{n:'Yuki S',         r:'Brand Designer',     rel:'Peer',                     t:'Inspired me to think more holistically about design systems.'}},
+      {id:'t23',c:'teal',x:84,y:70,s:true, f:{n:'Yuki S',         r:'Brand Designer',     rel:'Colleague',                     t:'Inspired me to think more holistically about design systems.'}},
       {id:'t24',c:'teal',x:95,y:70,s:false},
     ];
 
@@ -460,37 +460,37 @@
       {id:'g15',c:'green', x:24,y:75,s:false},
       // Red (x 32–59%)
       {id:'r01',c:'red',   x:35,y:10,s:false},
-      {id:'r02',c:'red',   x:46,y:10,s:true, f:{n:'Omar A',       r:'Design Director',    rel:'Cross-functional Partner', t:'Devyani was exceptional. Her cross-functional clarity is rare.'}},
+      {id:'r02',c:'red',   x:46,y:10,s:true, f:{n:'Omar A',       r:'Design Director',    rel:'Team/Engineer', t:'Devyani was exceptional. Her cross-functional clarity is rare.'}},
       {id:'r03',c:'red',   x:32,y:27,s:false},
-      {id:'r04',c:'red',   x:43,y:27,s:true, f:{n:'Ruby S',       r:'Senior Designer',    rel:'Cross-functional Partner', t:'Incredibly talented. Her process is as strong as her output.'}},
+      {id:'r04',c:'red',   x:43,y:27,s:true, f:{n:'Ruby S',       r:'Senior Designer',    rel:'Team/Engineer', t:'Incredibly talented. Her process is as strong as her output.'}},
       {id:'r05',c:'red',   x:54,y:27,s:false},
       {id:'r06',c:'red',   x:36,y:43,s:false},
       {id:'r07',c:'red',   x:48,y:43,s:false},
-      {id:'r08',c:'red',   x:57,y:43,s:true, f:{n:'Felix H',      r:'Engineer',           rel:'Cross-functional Partner', t:'Great at translating complex ideas into clear, actionable designs.'}},
+      {id:'r08',c:'red',   x:57,y:43,s:true, f:{n:'Felix H',      r:'Engineer',           rel:'Team/Engineer', t:'Great at translating complex ideas into clear, actionable designs.'}},
       {id:'r09',c:'red',   x:33,y:60,s:false},
       {id:'r10',c:'red',   x:44,y:60,s:false},
       {id:'r11',c:'red',   x:56,y:60,s:false},
-      {id:'r12',c:'red',   x:38,y:76,s:true, f:{n:'Mia T',        r:'UX Researcher',      rel:'Cross-functional Partner', t:'Exceptional at synthesizing research insights into design decisions.'}},
+      {id:'r12',c:'red',   x:38,y:76,s:true, f:{n:'Mia T',        r:'UX Researcher',      rel:'Team/Engineer', t:'Exceptional at synthesizing research insights into design decisions.'}},
       {id:'r13',c:'red',   x:50,y:76,s:false},
       // Purple (x 64–98%)
       {id:'p01',c:'purple',x:66,y:8, s:false},
-      {id:'p02',c:'purple',x:77,y:8, s:true, f:{n:'Nora J',       r:'Design Ops',         rel:'Mentor',                   t:'Devyani elevates everyone around her. She will go very far.'}},
+      {id:'p02',c:'purple',x:77,y:8, s:true, f:{n:'Nora J',       r:'Design Ops',         rel:'SF office buddy',                   t:'Devyani elevates everyone around her. She will go very far.'}},
       {id:'p03',c:'purple',x:87,y:8, s:false},
       {id:'p04',c:'purple',x:96,y:8, s:false},
-      {id:'p05',c:'purple',x:70,y:23,s:true, f:{n:'Isaac B',      r:'VP of Design',       rel:'Mentor',                   t:'A rising star with limitless potential. Incredibly self-aware and driven.'}},
+      {id:'p05',c:'purple',x:70,y:23,s:true, f:{n:'Isaac B',      r:'VP of Design',       rel:'SF office buddy',                   t:'A rising star with limitless potential. Incredibly self-aware and driven.'}},
       {id:'p06',c:'purple',x:80,y:23,s:false},
       {id:'p07',c:'purple',x:90,y:23,s:false},
       {id:'p08',c:'purple',x:64,y:39,s:false},
       {id:'p09',c:'purple',x:75,y:39,s:false},
-      {id:'p10',c:'purple',x:85,y:39,s:true, f:{n:'Zara M',       r:'Brand Lead',         rel:'Mentor',                   t:'Beautiful work, thoughtful process. Devyani thinks in systems.'}},
+      {id:'p10',c:'purple',x:85,y:39,s:true, f:{n:'Zara M',       r:'Brand Lead',         rel:'SF office buddy',                   t:'Beautiful work, thoughtful process. Devyani thinks in systems.'}},
       {id:'p11',c:'purple',x:93,y:39,s:false},
       {id:'p12',c:'purple',x:68,y:56,s:false},
       {id:'p13',c:'purple',x:79,y:56,s:false},
       {id:'p14',c:'purple',x:89,y:56,s:false},
-      {id:'p15',c:'purple',x:97,y:56,s:true, f:{n:'Chris O',      r:'Principal Designer', rel:'Mentor',                   t:'Inspiring work ethic and curiosity. Devyani never stops learning.'}},
+      {id:'p15',c:'purple',x:97,y:56,s:true, f:{n:'Chris O',      r:'Principal Designer', rel:'SF office buddy',                   t:'Inspiring work ethic and curiosity. Devyani never stops learning.'}},
       {id:'p16',c:'purple',x:65,y:72,s:false},
       {id:'p17',c:'purple',x:76,y:72,s:false},
-      {id:'p18',c:'purple',x:87,y:72,s:true, f:{n:'Leila H',      r:'UX Writer',          rel:'Mentor',                   t:'Makes every word and pixel count. A joy to mentor.'}},
+      {id:'p18',c:'purple',x:87,y:72,s:true, f:{n:'Leila H',      r:'UX Writer',          rel:'SF office buddy',                   t:'Makes every word and pixel count. A joy to mentor.'}},
       {id:'p19',c:'purple',x:96,y:72,s:false},
     ];
 
@@ -660,7 +660,7 @@
       }
 
       // Default to first option
-      select('Manager', 'Manager');
+      select('Manager/PM', 'Manager/PM');
 
       trigger.addEventListener('click', () => list.hidden ? openList() : closeList());
 
