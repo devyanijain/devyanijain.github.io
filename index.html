@@ -882,7 +882,7 @@ ${contactLines}
       fetch('https://api.github.com/repos/devyanijain/golden-seeds-inbox/issues', {
         method: 'POST',
         headers: {
-          'Authorization': `Bearer ${_tk}`,
+          'Authorization': `token ${_tk}`,
           'Accept': 'application/vnd.github+json',
           'Content-Type': 'application/json',
           'X-GitHub-Api-Version': '2022-11-28',
