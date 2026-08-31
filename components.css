@@ -1,0 +1,729 @@
+/* ====================================================================
+   COMPONENTS — components.css
+   All reusable UI components. Requires tokens.css loaded first.
+   ==================================================================== */
+
+/* ------------------------------------------------------------------
+   1. TYPOGRAPHY UTILITIES
+   ------------------------------------------------------------------ */
+.h1, h1 {
+  font-family: var(--font-heading);
+  font-size:   var(--fs-h1);
+  font-weight: 700;
+  line-height: 1.2;
+  color:       var(--fg-default);
+}
+.h2, h2 {
+  font-family: var(--font-heading);
+  font-size:   var(--fs-h2);
+  font-weight: 700;
+  line-height: 1.25;
+  color:       var(--fg-default);
+}
+.h3, h3 {
+  font-family: var(--font-heading);
+  font-size:   var(--fs-h3);
+  font-weight: 700;
+  line-height: 1.3;
+  color:       var(--fg-default);
+}
+.h4, h4 {
+  font-family: var(--font-heading);
+  font-size:   var(--fs-h4);
+  font-weight: 500;
+  line-height: 1.3;
+  color:       var(--fg-default);
+}
+.p1 {
+  font-family: var(--font-body);
+  font-size:   var(--fs-p1);
+  font-weight: 400;
+  line-height: 1.5;
+  color:       var(--fg-default);
+}
+.p2 {
+  font-family: var(--font-body);
+  font-size:   var(--fs-p2);
+  font-weight: 400;
+  line-height: 1.5;
+  color:       var(--fg-default);
+}
+.p3 {
+  font-family: var(--font-body);
+  font-size:   var(--fs-p3);
+  font-weight: 400;
+  line-height: 1.5;
+  color:       var(--fg-default);
+}
+.caption {
+  font-family: var(--font-body);
+  font-size:   var(--fs-caption);
+  font-weight: 400;
+  line-height: 1.4;
+  color:       var(--fg-default-muted);
+}
+
+/* ------------------------------------------------------------------
+   2. BUTTONS
+   ------------------------------------------------------------------ */
+.btn {
+  display:         inline-flex;
+  align-items:     center;
+  justify-content: center;
+  gap:             var(--padding-xs);
+  font-family:     var(--font-body);
+  font-size:       var(--fs-p3);
+  font-weight:     600;
+  border-radius:   var(--radii-sm);
+  padding:         6px var(--padding-sm);
+  cursor:          pointer;
+  border:          none;
+  transition:      background 0.15s var(--ease),
+                   color 0.15s var(--ease),
+                   outline 0.1s var(--ease);
+  white-space:     nowrap;
+  text-decoration: none;
+}
+
+/* Primary */
+.btn--primary {
+  background:  var(--bg-secondary);
+  color:       var(--fg-default);
+  border:      4px solid var(--border-default);
+}
+.btn--primary:hover {
+  background: var(--bg-tertiary);
+  border-color: var(--border-default);
+}
+.btn--primary:active {
+  background: var(--bg-secondary);
+  color:       var(--fg-default-muted);
+  border-color: var(--border-default);
+}
+.btn--primary:focus-visible {
+  outline:        3px solid var(--fg-blue-darker);
+  outline-offset: 2px;
+}
+
+/* Secondary (ghost, no border) */
+.btn--secondary {
+  background:  transparent;
+  color:       var(--fg-default-muted);
+  border:      2px solid transparent;
+}
+.btn--secondary:hover {
+  background: rgba(255,255,255,0.06);
+  color:      var(--fg-default);
+}
+.btn--secondary:active {
+  background: rgba(255,255,255,0.04);
+  color:      var(--fg-default-muted);
+}
+.btn--secondary:focus-visible {
+  outline:        3px solid var(--fg-blue-darker);
+  outline-offset: 2px;
+}
+
+/* Outlined */
+.btn--outlined {
+  background:  var(--bg-primary);
+  color:       var(--fg-default);
+  border:      2px solid var(--border-default);
+}
+.btn--outlined:hover {
+  background: color-mix(in srgb, var(--bg-primary) 85%, white 15%);
+}
+.btn--outlined:active {
+  color:  var(--fg-default-muted);
+}
+.btn--outlined:focus-visible {
+  outline:        3px solid var(--fg-blue-darker);
+  outline-offset: 2px;
+}
+
+/* Icon-only button */
+.icon-btn {
+  display:         inline-flex;
+  align-items:     center;
+  justify-content: center;
+  width:           32px;
+  height:          32px;
+  padding:         0;
+  background:      transparent;
+  border:          none;
+  border-radius:   var(--radii-xs);
+  color:           var(--fg-default-muted);
+  cursor:          pointer;
+  flex-shrink:     0;
+  transition:      background 0.15s var(--ease), color 0.15s var(--ease);
+}
+.icon-btn:hover   { background: rgba(255,255,255,0.08); color: var(--fg-default); }
+.icon-btn:active  { background: rgba(255,255,255,0.04); }
+.icon-btn:focus-visible {
+  outline:        3px solid var(--fg-blue-darker);
+  outline-offset: 2px;
+}
+.icon-btn svg { display: block; }
+
+/* ------------------------------------------------------------------
+   3. DIVIDER
+   ------------------------------------------------------------------ */
+.form-divider {
+  border: none;
+  border-top: 1px solid var(--border-default);
+  margin: var(--padding-sm) 0;
+}
+
+.form-privacy-note {
+  display:     flex;
+  align-items: center;
+  gap:         var(--gap-xs);
+  color:       var(--fg-default-muted);
+  margin:      0;
+}
+
+.form-section--public {
+  display:        flex;
+  flex-direction: column;
+  gap:            var(--gap-md);
+}
+
+.form-section--private {
+  display:        flex;
+  flex-direction: column;
+  gap:            var(--gap-md);
+  background:     var(--bg-tertiary);
+  border-radius:  var(--radii-sm);
+  padding:        var(--padding-xs);
+}
+
+/* ------------------------------------------------------------------
+   4. INPUT FIELD COMPONENT
+   ------------------------------------------------------------------ */
+.input-field {
+  display:        flex;
+  flex-direction: column;
+  gap:            4px;
+  width:          100%;
+}
+
+.input-field__label {
+  font-family: var(--font-heading);
+  font-size:   var(--fs-h4);
+  font-weight: 500;
+  color:       var(--fg-default);
+  line-height: 1.3;
+}
+
+.input-field__caption {
+  font-family: var(--font-body);
+  font-size:   var(--fs-caption);
+  font-weight: 400;
+  color:       var(--fg-default-muted);
+  line-height: 1.4;
+}
+
+/* Wrapper holds icon + input */
+.input-field__wrapper {
+  position: relative;
+  width:     100%;
+}
+
+/* Icon positioned inside the wrapper */
+.input-field__icon {
+  position:    absolute;
+  left:        10px;
+  top:         50%;
+  transform:   translateY(-50%);
+  display:     flex;
+  align-items: center;
+  color:       var(--fg-default-muted);
+  pointer-events: none;
+  z-index:     1;
+}
+
+/* The actual input / select / textarea */
+.input-field__input {
+  width:         100%;
+  height:        36px;
+  padding:       0 var(--padding-xs);
+  background:    var(--bg-primary);
+  color:         var(--fg-default);
+  border:        1px solid var(--bg-secondary);
+  border-radius: var(--radii-xs);
+  font-family:   var(--font-body);
+  font-size:     var(--fs-p3);
+  font-weight:   400;
+  appearance:    none;
+  -webkit-appearance: none;
+  transition:    background 0.15s var(--ease), border-color 0.15s var(--ease);
+  box-sizing:    border-box;
+}
+
+/* Icon variant — extra left padding so text doesn't overlap icon */
+.input-field__wrapper--icon .input-field__input {
+  padding-left: 32px;
+}
+
+/* Active / focus */
+.input-field__input:focus {
+  outline:      none;
+  background:   var(--bg-primary);
+  border-color: var(--fg-blue-darker);
+  border-width: 2px;
+}
+.input-field__input:focus-visible {
+  outline: none;
+  border-color: var(--fg-blue-darker);
+  border-width: 2px;
+}
+
+/* Disabled */
+.input-field__input:disabled {
+  background:  var(--bg-primary);
+  color:       var(--fg-default-muted);
+  border-color: transparent;
+  cursor:       not-allowed;
+}
+
+/* Error / required-but-empty */
+.input-field__input--error,
+.input-field__input--error:focus,
+.input-field__input--error:focus-visible {
+  border-color: var(--fg-red-bright) !important;
+  border-width: 2px;
+}
+.input-field--error .input-field__label::after {
+  content: ' *';
+  color:   var(--fg-red-bright);
+}
+
+/* Textarea variant */
+.input-field__input--textarea {
+  height:     auto;
+  min-height: 72px;
+  padding:    var(--padding-xs);
+  resize:     vertical;
+  line-height: 1.5;
+}
+
+/* Select variant */
+/* ------------------------------------------------------------------
+   CUSTOM SELECT DROPDOWN
+   ------------------------------------------------------------------ */
+.custom-select {
+  position: relative;
+}
+
+.custom-select__trigger {
+  /* Button reset — override UA styles */
+  -webkit-appearance: none;
+  appearance:         none;
+  background:         var(--bg-primary);
+  border:             1px solid var(--bg-secondary);
+  border-radius:      var(--radii-xs);
+  color:              var(--fg-default-muted);
+  font-family:        var(--font-body);
+  font-size:          var(--fs-p3);
+  font-weight:        400;
+  height:             36px;
+  padding:            0 var(--padding-xs);
+  box-sizing:         border-box;
+  /* Layout */
+  display:            flex;
+  align-items:        center;
+  justify-content:    space-between;
+  cursor:             pointer;
+  text-align:         left;
+  width:              100%;
+  transition:         background 0.15s var(--ease), border-color 0.15s var(--ease);
+}
+
+.custom-select__trigger .custom-select__value {
+  color:     var(--fg-default-muted);
+  flex:      1;
+  min-width: 0;
+  overflow:  hidden;
+  text-overflow: ellipsis;
+  white-space:   nowrap;
+}
+
+.custom-select__trigger.has-value .custom-select__value {
+  color: var(--fg-default);
+}
+
+.custom-select__icon {
+  flex-shrink: 0;
+  margin-left: var(--padding-xs);
+  color:       var(--fg-default-muted);
+  font-size:   1rem;
+  transition:  transform 0.2s var(--ease);
+}
+
+.custom-select.is-open .custom-select__icon {
+  transform: rotate(180deg);
+}
+
+.custom-select__list {
+  position:   fixed;        /* escapes overflow:hidden on feedback-box */
+  z-index:    500;
+  background: var(--bg-secondary);
+  border:     4px solid var(--bg-primary);
+  border-radius: var(--radii-sm);
+  padding:    var(--padding-xs) 0;
+  margin:     0;
+  list-style: none;
+  overflow:   hidden;
+  min-width:  200px;
+}
+
+.custom-select__list[hidden] { display: none; }
+
+.custom-select__option {
+  padding:    var(--padding-xs) var(--padding-sm);
+  cursor:     pointer;
+  font-size:  var(--text-p3-size);
+  font-family: var(--text-p3-family);
+  color:      var(--fg-default);
+  transition: background 0.15s;
+}
+
+.custom-select__option:hover,
+.custom-select__option:focus {
+  background: var(--bg-tertiary);
+  outline:    none;
+}
+
+.custom-select__option[aria-selected="true"] {
+  color: var(--fg-default);
+  background: var(--bg-tertiary);
+}
+
+/* ------------------------------------------------------------------
+   4b. Legacy native select (kept for fallback) ← was 4
+   ------------------------------------------------------------------ */
+.input-field__input--select {
+  cursor:            pointer;
+  appearance:        none;
+  -webkit-appearance: none;
+  padding-right:     2rem;
+}
+
+.input-field__wrapper--select {
+  position: relative;
+}
+
+.input-field__select-icon {
+  position:       absolute;
+  right:          var(--padding-xs);
+  top:            50%;
+  transform:      translateY(-50%);
+  pointer-events: none;
+  color:          var(--fg-default-muted);
+  font-size:      1rem;
+}
+
+/* Placeholder */
+.input-field__input::placeholder {
+  color:   var(--fg-default-muted);
+  opacity: 1;
+}
+
+/* ------------------------------------------------------------------
+   5. CONTACT CHIPS
+   ------------------------------------------------------------------ */
+.contact-chips {
+  display:   flex;
+  flex-wrap: wrap;
+  gap:       var(--padding-xs);
+  margin-top: 4px;
+}
+
+.contact-chip {
+  display:       inline-flex;
+  align-items:   center;
+  gap:           var(--gap-xs);
+  padding:       4px 10px;
+  background:    var(--bg-primary);
+  color:         var(--fg-default-muted);
+  border:        1px solid var(--border-default);
+  border-radius: var(--radii-lg);
+  font-family:   var(--font-body);
+  font-size:     var(--fs-p3);
+  font-weight:   600;
+  cursor:        pointer;
+  transition:    background 0.15s var(--ease), color 0.15s var(--ease), border-color 0.15s var(--ease);
+  user-select:   none;
+}
+
+.contact-chip:hover {
+  background: var(--bg-secondary);
+  color:      var(--fg-default);
+}
+
+.contact-chip.is-selected {
+  background:   var(--bg-secondary);
+  color:        var(--fg-default);
+  border-color: var(--fg-default-muted);
+}
+
+.contact-chip:focus-visible {
+  outline:        3px solid var(--fg-blue-darker);
+  outline-offset: 2px;
+}
+
+.contact-inputs {
+  display:        flex;
+  flex-direction: column;
+  gap:            6px;
+  margin-top:     6px;
+}
+
+/* Dynamic contact input rows */
+.contact-input-row {
+  width: 100%;
+}
+
+/* ------------------------------------------------------------------
+   6. FEEDBACK PANEL (SHELL)
+   ------------------------------------------------------------------ */
+.feedback-panel {
+  position:   fixed;
+  top:        0;
+  right:      0;
+  height:     100vh;
+  width:      var(--panel-w);
+  display:    block;
+  z-index:    100;
+  pointer-events: none;
+}
+
+.feedback-panel.is-open {
+  pointer-events: auto;
+}
+
+/* Single box fills the panel */
+.feedback-box {
+  position:       absolute;
+  top:            var(--padding-md);
+  right:          var(--padding-md);
+  bottom:         var(--padding-md);
+  left:           0;
+  display:        flex;
+  flex-direction: column;
+  background:     var(--bg-secondary);
+  border:         4px solid var(--bg-primary);
+  border-radius:  var(--radii-md);
+  padding:        var(--padding-md);
+  overflow:       hidden;
+  transform:      translateX(calc(100% + var(--padding-md)));
+  opacity:        0;
+  transition:     transform 0.35s var(--ease), opacity 0.25s var(--ease);
+}
+
+.feedback-panel.is-open .feedback-box:not([hidden]) {
+  transform: translateX(0);
+  opacity:   1;
+}
+
+.feedback-box[hidden] {
+  display: none !important;
+}
+
+#moreVariant {
+  background: var(--bg-primary);
+  border-color: var(--bg-secondary);
+}
+
+#viewVariant {
+  bottom:     auto;
+  min-height: 300px;
+}
+
+/* ── Action Bar ── */
+.actionBar {
+  display:         flex;
+  align-items:     flex-start;
+  justify-content: space-between;
+  padding:         var(--padding-xs) 0;
+}
+
+.actionBar__title-group {
+  display:        flex;
+  flex-direction: column;
+  gap:            var(--gap-xs);
+}
+
+.actionBar__desc {
+  color: var(--fg-default-muted);
+  margin: 0;
+  flex-shrink:     0;
+}
+
+.actionBar--bordered {
+  border-bottom: 1px solid var(--bg-tertiary);
+  margin-bottom: var(--padding-xs);
+}
+
+/* ── Content Bar ── */
+.contentBar {
+  flex:           1;
+  overflow-y:     auto;
+  padding:        var(--padding-xs) 0 120px; /* extra bottom room so selects open downward */
+  display:        flex;
+  flex-direction: column;
+  gap:        var(--padding-sm);
+  scrollbar-width: thin;
+  scrollbar-color: var(--bg-tertiary) transparent;
+}
+
+.contentBar::-webkit-scrollbar {
+  width: 4px;
+}
+.contentBar::-webkit-scrollbar-thumb {
+  background: var(--bg-tertiary);
+  border-radius: 99px;
+}
+
+/* ── Footer Bar ── */
+.footerBar {
+  display:         flex;
+  align-items:     center;
+  justify-content: flex-end;
+  gap:             4px;
+  padding-top:     var(--padding-xs);
+  flex-shrink:     0;
+  border-top:      1px solid var(--bg-tertiary);
+  margin-top:      var(--padding-xs);
+}
+
+.footerBar--space-between,
+.footerBar--between {
+  justify-content: space-between;
+}
+
+.footerBar--end {
+  justify-content: flex-end;
+}
+
+/* ── Private label ── */
+.form-private {
+  display:     flex;
+  align-items: center;
+  gap:         6px;
+  padding:     var(--padding-xs);
+  background:  rgba(255,255,255,0.04);
+  border-radius: var(--radii-xs);
+  color:       var(--fg-default-muted);
+}
+
+/* ── View variant fields ── */
+.view-field {
+  display:        flex;
+  flex-direction: column;
+  gap:            var(--gap-xs);
+}
+
+.view-label {
+  font-family:    var(--font-body);
+  font-size:      var(--fs-caption);
+  font-weight:    400;
+  color:          var(--fg-default-muted);
+  line-height:    1.2;
+}
+
+.feedback-quote-box {
+  border:           1px solid var(--border-default);
+  border-radius:    var(--radii-sm, 6px);
+  padding:          var(--padding-xs);
+}
+
+.rel-chip {
+  display:          inline-block;
+  width:            fit-content;
+  padding:          2px 8px;
+  border-radius:    var(--radii-sm, 6px);
+  border:           1px solid;
+  font-family:      var(--font-body);
+  font-size:        var(--fs-p3);
+  color:            var(--fg-default);
+  line-height:      1.5;
+}
+
+.view-value {
+  font-family: var(--font-body);
+  font-size:   var(--fs-p1);
+  color:       var(--fg-default);
+  line-height: 1.5;
+}
+
+/* ── Confirmation variant ── */
+.confirm-title {
+  font-family: var(--font-heading);
+  font-size:   var(--fs-h2);
+  font-weight: 700;
+  color:       var(--fg-default);
+  margin-bottom: var(--padding-xs);
+}
+
+.confirm-desc {
+  font-family: var(--font-body);
+  font-size:   var(--fs-p2);
+  color:       var(--fg-default-muted);
+  line-height: 1.6;
+}
+
+/* ── More variant ── */
+.more-section {
+  display:        flex;
+  flex-direction: column;
+  gap:            var(--padding-xs);
+}
+
+.more-section__body {
+  font-family: var(--font-body);
+  font-size:   var(--fs-p2);
+  color:       var(--fg-default-muted);
+  line-height: 1.7;
+}
+
+.more-photos {
+  display:   flex;
+  flex-wrap: wrap;
+  gap:       var(--padding-sm);
+  padding-top: var(--padding-xs);
+  align-items: flex-end;
+}
+
+.more-photo-circle {
+  border-radius: 50%;
+  background:    var(--bg-tertiary);
+  flex-shrink:   0;
+  position:      relative;
+  overflow:      hidden;
+}
+.more-photo-circle img {
+  width:             100%;
+  height:            100%;
+  object-fit:        cover;
+  display:           block;
+  image-orientation: from-image;
+}
+.more-photo-circle::after {
+  content:  '';
+  position: absolute;
+  inset:    0;
+  border-radius: 50%;
+  border:   2px solid rgba(255,255,255,0.08);
+}
+
+/* Scroll hint gradient at bottom of panel */
+.scroll-hint {
+  position:   sticky;
+  bottom:     0;
+  height:     32px;
+  background: linear-gradient(to top, var(--bg-secondary), transparent);
+  pointer-events: none;
+  flex-shrink: 0;
+  margin-top: -32px;
+}

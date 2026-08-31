@@ -1,0 +1,80 @@
+/* ====================================================================
+   DESIGN TOKENS — tokens.css
+   Source of truth for all design decisions.
+   ==================================================================== */
+:root {
+  /* ── Foreground ── */
+  --fg-default:       #FCFCFC;
+  --fg-default-muted: #D4D4D4;
+  --fg-inverse:       #1E1E1E;
+  --fg-inverse-muted: #404040;
+
+  /* Semantic foreground — darker (text/icon) + muted (tint) per hue */
+  --fg-red-darker:    #D71111;
+  --fg-red-muted:     #FFE2E0;
+  --fg-orange-darker: #946A00;
+  --fg-orange-muted:  #FFEC9E;
+  --fg-blue-darker:   #006EDB;
+  --fg-blue-muted:    #D1F0FF;
+  --fg-purple-darker: #894CEB;
+  --fg-purple-muted:  #F1E5FF;
+  --fg-green-darker:  #2C8141;
+  --fg-green-muted:   #CAF7CA;
+
+  /* Dull fills — default (unsubmitted) dot state */
+  --fg-red-dull:    #620101;
+  --fg-yellow-dull: #413803;
+  --fg-blue-dull:   #013B3C;
+  --fg-green-dull:  #043710;
+  --fg-purple-dull: #31044B;
+
+  /* Bright error red */
+  --fg-red-bright: #FF4444;
+
+  /* ── Background ── */
+  --bg-default:   #171717;
+  --bg-primary:   #232323;
+  --bg-secondary: #3C3C3C;
+  --bg-tertiary:  #3D3D3D;
+  --bg-inverse:   #E6E6E6;
+
+  /* ── Border ── */
+  --border-default: #494949;
+
+  /* ── Typography ── */
+  --font-heading: 'Space Mono',    'Courier New', monospace;
+  --font-body:    'Space Grotesk', system-ui,     sans-serif;
+
+  --fs-h1:      28px;
+  --fs-h2:      24px;
+  --fs-h3:      20px;
+  --fs-h4:      18px;
+  --fs-p1:      18px;
+  --fs-p2:      16px;
+  --fs-p3:      14px;
+  --fs-caption: 12px;
+
+  /* ── Spacing ── */
+  --padding-xs: 8px;
+  --padding-sm: 16px;
+  --padding-md: 24px;
+  --padding-lg: 40px;
+  --padding-xl: 60px;
+
+  /* Gap scale */
+  --gap-xs: 4px;
+  --gap-sm: 8px;
+  --gap-md: 16px;
+  --gap-lg: 32px;
+
+  /* ── Radii ── */
+  --radii-xs: 4px;
+  --radii-sm: 8px;
+  --radii-md: 12px;
+  --radii-lg: 16px;
+
+  /* ── Misc ── */
+  --dot-size: 28px;
+  --panel-w:  clamp(340px, 38vw, 520px);
+  --ease:     cubic-bezier(0.22, 1, 0.36, 1);
+}

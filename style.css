@@ -1,66 +1,14 @@
 /* ====================================================================
-   DESIGN TOKENS
+   LAYOUT — style.css
+   Page-level layout only. Tokens: tokens.css. Components: components.css.
    ==================================================================== */
-:root {
-  /* Foreground */
-  --fg-default:       #FCFCFC;
-  --fg-default-muted: #D4D4D4;
 
-  /* Foreground accent (dull) — used for default dot fills */
-  --fg-red-dull:    #620101;
-  --fg-yellow-dull: #413803;
-  --fg-blue-dull:   #013B3C;   /* teal/blue group */
-  --fg-green-dull:  #043710;
-  --fg-purple-dull: #31044B;
-
-  /* Background */
-  --bg-primary:   #000000;
-  --bg-secondary: #1F1F1F;
-  --bg-tertiary:  #3D3D3D;
-
-  /* Typography */
-  --font-heading: 'Space Mono',    'Courier New', monospace;
-  --font-body:    'Space Grotesk', system-ui,     sans-serif;
-
-  /* Font scale */
-  --fs-h1:      28px;
-  --fs-h2:      24px;
-  --fs-h3:      20px;
-  --fs-p1:      18px;
-  --fs-p2:      16px;
-  --fs-p3:      14px;
-  --fs-caption: 12px;
-
-  /* Spacing (padding tokens) */
-  --padding-sm: 8px;
-  --padding-md: 16px;
-  --padding-lg: 24px;
-
-  /* Radii */
-  --radii-sm: 4px;
-  --radii-md: 12px;
-
-  /* Dot */
-  --dot-size: 28px;
-
-  /* Panel */
-  --panel-w: clamp(340px, 38vw, 520px);
-
-  /* Animation */
-  --ease: cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-/* ====================================================================
-   RESET
-   ==================================================================== */
+/* ── Reset ── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-html {
-  -webkit-text-size-adjust: 100%;
-}
+html { -webkit-text-size-adjust: 100%; background: var(--bg-default); }
 
 body {
-  background:  var(--bg-primary);
+  background:  var(--bg-default);
   color:       var(--fg-default);
   font-family: var(--font-body);
   font-size:   var(--fs-p2);
@@ -71,21 +19,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-button { font-family: inherit; cursor: pointer; }
+button, input, textarea, select { font-family: inherit; }
 
 /* ====================================================================
-   TYPOGRAPHY UTILITY CLASSES
-   ==================================================================== */
-.h1 { font-family: var(--font-heading); font-weight: 700; font-size: var(--fs-h1); line-height: 1.15; color: var(--fg-default); }
-.h2 { font-family: var(--font-heading); font-weight: 700; font-size: var(--fs-h2); line-height: 1.2;  color: var(--fg-default); }
-.h3 { font-family: var(--font-heading); font-weight: 700; font-size: var(--fs-h3); line-height: 1.25; color: var(--fg-default); }
-.p1 { font-family: var(--font-body);    font-weight: 400; font-size: var(--fs-p1); color: var(--fg-default); }
-.p2 { font-family: var(--font-body);    font-weight: 400; font-size: var(--fs-p2); color: var(--fg-default); }
-.p3 { font-family: var(--font-body);    font-weight: 400; font-size: var(--fs-p3); color: var(--fg-default); }
-.caption { font-family: var(--font-body); font-weight: 400; font-size: var(--fs-caption); color: var(--fg-default-muted); }
-
-/* ====================================================================
-   HOME LAYOUT — three rows that together fill 100vh
+   HOME LAYOUT — three rows filling 100vh
    ==================================================================== */
 .home {
   display:        flex;
@@ -93,35 +30,43 @@ button { font-family: inherit; cursor: pointer; }
   min-height:     100vh;
 }
 
-/* ── Dot fields (40vh each) ── */
+/* Dot fields (40vh each) */
 .dot-field {
   position:   relative;
   flex:       none;
   height:     40vh;
-  background: var(--bg-primary);
+  background: var(--bg-default);
   overflow:   hidden;
 }
 
-/* ── Middle content (20vh) ── */
+/* Middle content (20vh) */
 .middle-content {
-  flex:       none;
-  height:     20vh;
-  display:    flex;
+  flex:        none;
+  height:      20vh;
+  display:     flex;
   align-items: center;
-  background: transparent;
-  padding:    0 var(--padding-lg);
-  z-index:    1;
+  background:  transparent;
+  padding:     0 var(--padding-lg);
+  z-index:     1;
 }
 
 .middle-content__inner {
   display:        flex;
   flex-direction: column;
-  gap:            var(--padding-md);
-  max-width:      500px;
+  gap:            var(--padding-sm);
+  max-width:      520px;
+}
+
+.middle-content__actions {
+  display:    flex;
+  align-items: center;
+  gap:        var(--padding-xs);
+  align-self: flex-start;
 }
 
 .middle-content__desc {
   color:       var(--fg-default-muted);
+  font-family: var(--font-body);
   font-size:   var(--fs-p1);
   line-height: 1.55;
 }
@@ -137,297 +82,257 @@ button { font-family: inherit; cursor: pointer; }
   border:        none;
   transform:     translate(-50%, -50%);
   transition:    box-shadow 0.25s var(--ease);
-  /* position set via inline style (left/top %) */
+  cursor:        default;
 }
 
-/* Default (dull) fills — no interaction */
-.dot--yellow   { background: var(--fg-yellow-dull); pointer-events: none; }
-.dot--teal     { background: var(--fg-blue-dull);   pointer-events: none; }
-.dot--green    { background: var(--fg-green-dull);  pointer-events: none; }
-.dot--red      { background: var(--fg-red-dull);    pointer-events: none; }
-.dot--purple   { background: var(--fg-purple-dull); pointer-events: none; }
+/* Default (dull) — no pointer events */
+.dot--yellow { background: var(--fg-yellow-dull); pointer-events: none; }
+.dot--teal   { background: var(--fg-blue-dull);   pointer-events: none; }
+.dot--green  { background: var(--fg-green-dull);  pointer-events: none; }
+.dot--red    { background: var(--fg-red-dull);    pointer-events: none; }
+.dot--purple { background: var(--fg-purple-dull); pointer-events: none; }
 
-/* Submitted — bright gradient + glow, interactive */
+/* Submitted — glowing gradient, interactive */
 .dot--submitted.dot--yellow {
-  background:    radial-gradient(circle at 35% 35%, #D4A017, #7A5C00);
-  box-shadow:    0 0 14px 5px rgba(212,160,23,0.45);
+  background:     radial-gradient(circle at 35% 35%, #D4A017, #7A5C00);
+  box-shadow:     0 0 14px 5px rgba(212,160,23,0.45);
   pointer-events: auto;
+  cursor:         pointer;
 }
 .dot--submitted.dot--teal {
-  background:    radial-gradient(circle at 35% 35%, #00CCCF, #005557);
-  box-shadow:    0 0 14px 5px rgba(0,204,207,0.45);
+  background:     radial-gradient(circle at 35% 35%, #00CCCF, #005557);
+  box-shadow:     0 0 14px 5px rgba(0,204,207,0.45);
   pointer-events: auto;
+  cursor:         pointer;
 }
 .dot--submitted.dot--green {
-  background:    radial-gradient(circle at 35% 35%, #2DBD6A, #0A5C2A);
-  box-shadow:    0 0 14px 5px rgba(45,189,106,0.4);
+  background:     radial-gradient(circle at 35% 35%, #2DBD6A, #0A5C2A);
+  box-shadow:     0 0 14px 5px rgba(45,189,106,0.4);
   pointer-events: auto;
+  cursor:         pointer;
 }
 .dot--submitted.dot--red {
-  background:    radial-gradient(circle at 35% 35%, #FF4B4B, #8C0000);
-  box-shadow:    0 0 14px 5px rgba(255,75,75,0.45);
+  background:     radial-gradient(circle at 35% 35%, #FF4B4B, #8C0000);
+  box-shadow:     0 0 14px 5px rgba(255,75,75,0.45);
   pointer-events: auto;
+  cursor:         pointer;
 }
 .dot--submitted.dot--purple {
-  background:    radial-gradient(circle at 35% 35%, #B55FFF, #52007A);
-  box-shadow:    0 0 14px 5px rgba(181,95,255,0.45);
+  background:     radial-gradient(circle at 35% 35%, #B55FFF, #52007A);
+  box-shadow:     0 0 14px 5px rgba(181,95,255,0.45);
   pointer-events: auto;
+  cursor:         pointer;
 }
 
 .dot--submitted:hover,
 .dot--submitted:focus-visible {
-  box-shadow: 0 0 22px 8px rgba(255,255,255,0.18);
+  box-shadow: 0 0 24px 10px rgba(255,255,255,0.2);
   outline:    none;
 }
 
-/* ====================================================================
-   BUTTONS
-   ==================================================================== */
-.btn {
-  display:     inline-flex;
-  align-items: center;
-  gap:         8px;
-  padding:     9px 18px;
-  border-radius: var(--radii-sm);
-  font-family: var(--font-heading);
-  font-weight: 700;
-  font-size:   var(--fs-p3);
-  line-height: 1;
-  transition:  background 0.2s var(--ease), color 0.2s var(--ease), border-color 0.2s var(--ease);
-  border:      2px solid transparent;
+/* Active — feedback panel open for this dot */
+.dot--active {
+  outline:        2px solid #fff;
+  outline-offset: 3px;
+  box-shadow:     0 0 20px 8px rgba(255,255,255,0.35);
 }
 
-.btn--primary {
-  background:   var(--bg-tertiary);
-  color:        var(--fg-default);
-  border-color: var(--bg-tertiary);
-}
-.btn--primary:hover { background: #4d4d4d; border-color: #4d4d4d; }
-
-.btn--secondary {
-  background:   transparent;
-  color:        var(--fg-default);
-  border-color: transparent;
-}
-.btn--secondary:hover { color: var(--fg-default-muted); }
-
-/* Outlined — used for "Log some words" CTA */
-.btn--outlined {
-  background:   transparent;
-  color:        var(--fg-default);
-  border-color: var(--bg-tertiary);
-}
-.btn--outlined:hover { background: var(--bg-secondary); border-color: var(--fg-default-muted); }
-
-/* Icon button */
-.icon-btn {
-  display:     inline-flex;
-  align-items: center;
-  justify-content: center;
-  background:  transparent;
-  border:      none;
-  color:       var(--fg-default);
-  padding:     4px;
-  border-radius: var(--radii-sm);
-  transition:  color 0.2s, opacity 0.2s;
-}
-.icon-btn:hover { color: var(--fg-default-muted); }
-
-/* ====================================================================
-   FEEDBACK PANEL
-   ==================================================================== */
-.feedback-panel {
-  position:   fixed;
-  top:        var(--padding-lg);
-  bottom:     var(--padding-lg);
-  right:      var(--padding-lg);
-  width:      var(--panel-w);
-  /* stack children; only one is ever visible at a time */
-  display:    block;
-  z-index:    200;
-  transform:  translateX(calc(100% + var(--padding-lg)));
-  transition: transform 0.35s var(--ease);
-  pointer-events: none;
-}
-
-.feedback-panel.is-open {
-  transform:      translateX(0);
-  pointer-events: all;
-}
-
-/* ====================================================================
-   FEEDBACK BOX (shared shell)
-   ==================================================================== */
-.feedback-box {
-  width:          100%;
-  height:         100%;
-  background:     var(--bg-secondary);
-  border:         4px solid var(--bg-tertiary);
-  border-radius:  var(--radii-md);
-  display:        flex;
-  flex-direction: column;
-  overflow:       hidden;
-}
-
-/* hide the [hidden] boxes — belt-and-suspenders */
-.feedback-box[hidden] { display: none !important; }
-
-/* ── Action Bar ── */
-.actionBar {
-  flex:        none;
-  display:     flex;
-  align-items: center;
-  justify-content: space-between;
-  padding:     var(--padding-sm) var(--padding-md);
-}
-
-.actionBar--bordered {
-  border-bottom: 2px solid var(--bg-tertiary);
-}
-
-.actionBar--end { justify-content: flex-end; }
-
-/* ── Content Bar ── */
-.contentBar {
-  flex:          1;
-  overflow-y:    auto;
-  padding:       var(--padding-md);
-  display:       flex;
-  flex-direction: column;
-  gap:           var(--padding-md);
-  scrollbar-width: thin;
-  scrollbar-color: var(--bg-tertiary) transparent;
-}
-
-.contentBar::-webkit-scrollbar       { width: 4px; }
-.contentBar::-webkit-scrollbar-track { background: transparent; }
-.contentBar::-webkit-scrollbar-thumb { background: var(--bg-tertiary); border-radius: 2px; }
-
-/* ── Footer Bar ── */
-.footerBar {
-  flex:        none;
-  display:     flex;
-  align-items: center;
-  padding:     var(--padding-sm) var(--padding-md);
-}
-
-.footerBar--end     { justify-content: flex-end; }
-.footerBar--between { justify-content: space-between; }
-.footerBar--gap     { gap: 4px; }
-
-/* ── Scroll hint ── */
-.scroll-hint {
-  text-align:    right;
-  padding:       0 var(--padding-md) 4px;
-  cursor:        pointer;
-  user-select:   none;
-  color:         var(--fg-default-muted);
-  letter-spacing: 0.04em;
-  flex:          none;
-}
-.scroll-hint:hover { color: var(--fg-default); }
-
-/* ====================================================================
-   FORM ELEMENTS (Edit variant)
-   ==================================================================== */
-.form-group {
+/* Dot hover tooltip */
+.dot-tooltip {
+  position:       fixed;
+  z-index:        200;
   display:        flex;
   flex-direction: column;
   gap:            4px;
+  background:     var(--bg-primary);
+  border:         4px solid #fff;      /* overridden inline per color */
+  border-radius:  var(--radii-sm);
+  padding:        var(--padding-xs) var(--padding-sm);
+  cursor:         pointer;
+  pointer-events: auto;
+  white-space:    nowrap;
+  transition:     opacity 0.12s ease;
 }
 
-.form-label { color: var(--fg-default); }
-.form-hint  { color: var(--fg-default-muted); font-size: var(--fs-caption); font-family: var(--font-body); }
+.dot-tooltip[hidden] { display: none !important; }
 
-.form-input,
-.form-select,
-.form-textarea {
-  background:    var(--bg-tertiary);
-  border:        1.5px solid var(--bg-tertiary);
+.dot-tooltip__name {
+  color:       var(--fg-default);
+  font-weight: 600;
+}
+
+.dot-tooltip__role {
+  color: var(--fg-default-muted);
+}
+
+/* "This is your dot" callout */
+.your-dot-box {
+  position:      fixed;
+  z-index:       210;
+  background:    var(--bg-primary);
+  border:        4px solid var(--bg-secondary);
   border-radius: var(--radii-sm);
+  padding:       var(--padding-sm);
+  pointer-events: none;
+  white-space:   nowrap;
   color:         var(--fg-default);
-  font-family:   var(--font-body);
-  font-size:     var(--fs-p3);
-  padding:       7px 10px;
-  outline:       none;
-  transition:    border-color 0.2s;
-  /* short inputs match the image width */
-  width:         min(180px, 55%);
+  animation:     yourDotFade 3s ease forwards;
+}
+.your-dot-box[hidden] { display: none !important; }
+
+@keyframes yourDotFade {
+  0%   { opacity: 0; transform: translateY(-4px); }
+  10%  { opacity: 1; transform: translateY(0); }
+  80%  { opacity: 1; }
+  100% { opacity: 0; }
 }
 
-.form-textarea {
-  width:      100%;
-  resize:     vertical;
-  min-height: 100px;
-}
-
-.form-input:focus,
-.form-select:focus,
-.form-textarea:focus {
-  border-color: var(--fg-default-muted);
-}
-
-.form-select {
-  cursor:             pointer;
-  -webkit-appearance: none;
-  appearance:         none;
-}
-
-.form-private {
-  color:      var(--fg-default-muted);
-  font-size:  var(--fs-caption);
-  font-family: var(--font-body);
-  margin-top: var(--padding-sm);
-}
-
-/* ====================================================================
-   VIEW VARIANT
-   ==================================================================== */
-.view-field {
-  display:   flex;
+/* ── Dot search widget ── */
+.dot-search {
+  position:       fixed;
+  bottom:         var(--padding-md);
+  left:           var(--padding-md);
+  z-index:        150;
+  display:        flex;
   flex-direction: column;
-  gap:       6px;
+  gap:            4px;
+  background:     var(--bg-default);
+  border:         4px solid var(--bg-secondary);
+  border-radius:  var(--radii-sm);
+  padding:        var(--padding-xs) var(--padding-sm) var(--padding-sm);
+  min-width:      220px;
 }
 
-.view-label { color: var(--fg-default); }
-.view-value { color: var(--fg-default-muted); font-size: var(--fs-p1); line-height: 1.55; }
-
-/* ====================================================================
-   CONFIRMATION VARIANT
-   ==================================================================== */
-.confirm-desc {
+.dot-search__label {
   color:       var(--fg-default-muted);
-  line-height: 1.6;
+  font-size:   var(--text-caption-size);
+  font-family: var(--text-caption-family);
+  user-select: none;
+}
+
+.dot-search__input-wrapper {
+  position: relative;
+  display:  flex;
+  align-items: center;
+}
+
+.dot-search__icon {
+  position:      absolute;
+  left:          var(--padding-xs);
+  color:         var(--fg-default-muted);
+  pointer-events: none;
+  flex-shrink:   0;
+}
+
+.dot-search__input {
+  background:    var(--bg-default);
+  border:        1.5px solid var(--bg-tertiary);
+  border-radius: var(--radii-xs);
+  padding:       var(--padding-xs) var(--padding-sm);
+  padding-left:  calc(var(--padding-xs) + 14px + 8px);
+  color:         var(--fg-default);
+  font-size:     var(--text-p3-size);
+  font-family:   var(--text-p3-family);
+  width:         100%;
+  outline:       none;
+  box-sizing:    border-box;
+}
+.dot-search__input:focus {
+  border-color: var(--fg-default);
+  background:   var(--bg-primary);
+}
+.dot-search__input::placeholder { color: var(--fg-default-muted); }
+/* hide browser ✕ on type=search */
+.dot-search__input::-webkit-search-cancel-button { display: none; }
+
+/* Inactive state — shown while feedback panel is open */
+.dot-search--inactive {
+  opacity:        0.45;
+  pointer-events: none;
+}
+.dot-search--inactive .dot-search__label,
+.dot-search--inactive .dot-search__icon,
+.dot-search--inactive .dot-search__input,
+.dot-search--inactive .dot-search__input::placeholder {
+  color: var(--fg-default-muted);
 }
 
 /* ====================================================================
    RESPONSIVE
    ==================================================================== */
 @media (max-width: 860px) {
-  /* Stack panel to bottom sheet on narrow screens */
-  .feedback-panel {
-    top:        auto;
-    right:      0;
-    bottom:     0;
-    left:       0;
-    width:      100%;
-    height:     88vh;
-    padding:    var(--padding-md);
-    transform:  translateY(100%);
-    display:    block;
+  .middle-content {
+    padding: 0 var(--padding-md);
+    height:  auto;
+    min-height: 20vh;
   }
-
-  .feedback-panel.is-open { transform: translateY(0); }
-
-  .middle-content { padding: 0 var(--padding-md); }
-
   .middle-content__inner { max-width: 100%; }
+
+  /* Panel becomes bottom sheet */
+  .feedback-panel {
+    top:       auto !important;
+    right:     0   !important;
+    bottom:    0   !important;
+    left:      0   !important;
+    width:     100% !important;
+    height:    88vh !important;
+    transform: translateY(100%) !important;
+  }
+  .feedback-panel.is-open { transform: translateY(0) !important; }
+
+  .feedback-box {
+    top:    0;
+    right:  0;
+    bottom: 0;
+    left:   0;
+  }
 }
 
 @media (max-width: 480px) {
-  :root { --dot-size: 22px; }
+  :root { --dot-size: 20px; }
+  .h1   { font-size: 22px; }
+  .middle-content { padding: var(--padding-md); }
+}
 
-  .h1 { font-size: 22px; }
+/* ====================================================================
+   REALLY NARROW — panel flows below bottomContent
+   ==================================================================== */
+@media (max-width: 420px) {
+  /* Pull the panel out of fixed-stacking and let it flow in the document */
+  .feedback-panel {
+    position:  relative !important;
+    top:       auto !important;
+    right:     auto !important;
+    bottom:    auto !important;
+    left:      auto !important;
+    width:     100% !important;
+    height:    auto !important;
+    /* Hide via max-height collapse; no translateY needed */
+    max-height: 0 !important;
+    overflow:   hidden !important;
+    transform:  none !important;
+    transition: max-height 0.4s var(--ease), opacity 0.3s var(--ease) !important;
+    opacity:    0 !important;
+  }
 
-  .middle-content { height: auto; min-height: 20vh; padding: var(--padding-md); }
+  .feedback-panel.is-open {
+    max-height: 1400px !important;
+    opacity:    1 !important;
+    transform:  none !important;
+  }
+
+  /* Feedback box fills its parent width, no absolute positioning */
+  .feedback-box {
+    position:   relative !important;
+    top:        auto !important;
+    right:      auto !important;
+    bottom:     auto !important;
+    left:       auto !important;
+    width:      100% !important;
+    min-height: 300px;
+    box-sizing: border-box;
+    transform:  none !important;
+    opacity:    1 !important;
+    margin:     var(--padding-md) 0 !important;
+  }
 }
