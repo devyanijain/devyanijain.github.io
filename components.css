@@ -544,6 +544,8 @@
 }
 
 #viewVariant {
+  bottom:     auto;           /* hug content height */
+  max-height: calc(100% - var(--padding-md) * 2); /* cap at full panel */
 }
 
 /* ── Action Bar ── */
