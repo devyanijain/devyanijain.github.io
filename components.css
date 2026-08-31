@@ -621,20 +621,38 @@
 .view-field {
   display:        flex;
   flex-direction: column;
-  gap:            2px;
+  gap:            var(--gap-xs);
 }
 
 .view-label {
-  font-family: var(--font-body);
-  font-size:   var(--fs-caption);
-  color:       var(--fg-default-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
+  font-family:    var(--font-body);
+  font-size:      var(--fs-caption);
+  font-weight:    400;
+  color:          var(--fg-default-muted);
+  line-height:    1.2;
+}
+
+.feedback-quote-box {
+  border:           1px solid var(--border-default);
+  border-radius:    var(--radii-sm, 6px);
+  padding:          var(--padding-xs);
+}
+
+.rel-chip {
+  display:          inline-block;
+  width:            fit-content;
+  padding:          2px 8px;
+  border-radius:    var(--radii-sm, 6px);
+  border:           1px solid;
+  font-family:      var(--font-body);
+  font-size:        var(--fs-p3);
+  color:            var(--fg-default);
+  line-height:      1.5;
 }
 
 .view-value {
   font-family: var(--font-body);
-  font-size:   var(--fs-p3);
+  font-size:   var(--fs-p1);
   color:       var(--fg-default);
   line-height: 1.5;
 }

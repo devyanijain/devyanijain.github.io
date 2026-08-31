@@ -203,7 +203,8 @@
     <div class="feedback-box" id="viewVariant" role="dialog" aria-modal="true" hidden>
 
       <!-- Action Bar -->
-      <div class="actionBar actionBar--bordered" style="justify-content:flex-end;">
+      <div class="actionBar actionBar--bordered">
+        <span class="h3" id="vw-title"></span>
         <button class="icon-btn" id="closeViewBtn" aria-label="Close">
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256" aria-hidden="true">
             <path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"/>
@@ -214,20 +215,18 @@
       <!-- Content Bar -->
       <div class="contentBar">
         <div class="view-field">
-          <span class="view-label caption">NAME</span>
-          <span class="view-value p2" id="vw-name"></span>
-        </div>
-        <div class="view-field">
-          <span class="view-label caption">ROLE</span>
+          <span class="view-label">Role at Github</span>
           <span class="view-value p2" id="vw-role"></span>
         </div>
         <div class="view-field">
-          <span class="view-label caption">RELATIONSHIP</span>
-          <span class="view-value p2" id="vw-relationship"></span>
+          <span class="view-label">Relationship</span>
+          <span class="rel-chip" id="vw-relationship"></span>
         </div>
         <div class="view-field">
-          <span class="view-label caption">FEEDBACK</span>
-          <span class="view-value p2" id="vw-feedback" style="white-space:pre-wrap;"></span>
+          <span class="view-label">Feedback</span>
+          <div class="feedback-quote-box">
+            <span class="view-value p1" id="vw-feedback" style="white-space:pre-wrap;"></span>
+          </div>
         </div>
       </div>
 
@@ -667,14 +666,30 @@
       openPanel();
     }
 
+    const REL_CHIP_DULL = {
+      yellow: 'var(--fg-yellow-dull)',
+      teal:   'var(--fg-blue-dull)',
+      green:  'var(--fg-green-dull)',
+      red:    'var(--fg-red-dull)',
+      purple: 'var(--fg-purple-dull)',
+    };
+
     function showFeedback(dot, dotEl) {
       setActiveDot(dotEl || document.getElementById('dot-' + dot.id) || null);
       viewIndex = submittedDots.findIndex(d => d.id === dot.id);
-      const f = dot.f;
-      document.getElementById('vw-name').textContent         = f.n;
-      document.getElementById('vw-role').textContent         = f.r;
-      document.getElementById('vw-relationship').textContent = f.rel;
-      document.getElementById('vw-feedback').textContent     = f.t;
+      const f     = dot.f;
+      const color = REL_COLOR[f.rel] || 'teal';
+
+      document.getElementById('vw-title').textContent = f.n + '\u2019s Feedback';
+      document.getElementById('vw-role').textContent  = f.r;
+
+      const chip = document.getElementById('vw-relationship');
+      chip.textContent          = f.rel;
+      chip.style.backgroundColor = REL_CHIP_DULL[color] || 'var(--fg-blue-dull)';
+      chip.style.borderColor     = DOT_BORDER_COLOR[color] || '#00CCCF';
+
+      document.getElementById('vw-feedback').textContent = '\u201c' + f.t + '\u201d';
+
       showOnly(viewBox);
       openPanel();
     }
