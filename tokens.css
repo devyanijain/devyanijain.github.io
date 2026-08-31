@@ -28,6 +28,9 @@
   --fg-green-dull:  #043710;
   --fg-purple-dull: #31044B;
 
+  /* Bright error red */
+  --fg-red-bright: #FF4444;
+
   /* ── Background ── */
   --bg-default:   #171717;
   --bg-primary:   #232323;

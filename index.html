@@ -114,7 +114,7 @@
             <div class="input-field">
               <label class="input-field__label" for="inp-name">Name</label>
               <div class="input-field__wrapper">
-                <input class="input-field__input" type="text" id="inp-name" name="name" autocomplete="name" placeholder="Your name" />
+                <input class="input-field__input" type="text" id="inp-name" name="name" autocomplete="name" placeholder="Your name" required />
               </div>
             </div>
 
@@ -123,7 +123,7 @@
               <label class="input-field__label" for="inp-role">Role</label>
               <span class="input-field__caption">Your role here</span>
               <div class="input-field__wrapper">
-                <input class="input-field__input" type="text" id="inp-role" name="role" placeholder="e.g. Senior Designer" />
+                <input class="input-field__input" type="text" id="inp-role" name="role" placeholder="e.g. Senior Designer" required />
               </div>
             </div>
 
@@ -132,7 +132,8 @@
               <label class="input-field__label" for="inp-relationship">Relationship</label>
               <span class="input-field__caption">What were you to Devyani?</span>
               <div class="input-field__wrapper input-field__wrapper--select">
-                <select class="input-field__input input-field__input--select" id="inp-relationship" name="relationship">
+                <select class="input-field__input input-field__input--select" id="inp-relationship" name="relationship" required>
+                  <option value="" disabled selected>Select relationship…</option>
                   <option value="Manager/PM">Manager/PM</option>
                   <option value="Direct Report">Direct Report</option>
                   <option value="Colleague">Colleague</option>
@@ -148,7 +149,7 @@
               <label class="input-field__label" for="inp-feedback">How was your experience working with Devyani?</label>
               <span class="input-field__caption">This could include anything and everything</span>
               <div class="input-field__wrapper">
-                <textarea class="input-field__input input-field__input--textarea" id="inp-feedback" name="feedback" rows="4" placeholder="Share your experience…"></textarea>
+                <textarea class="input-field__input input-field__input--textarea" id="inp-feedback" name="feedback" rows="4" placeholder="Share your experience…" required></textarea>
               </div>
             </div>
 
@@ -169,7 +170,7 @@
             <div class="input-field">
               <label class="input-field__label" for="inp-improve">What are some things she can work on?</label>
               <div class="input-field__wrapper">
-                <input class="input-field__input" type="text" id="inp-improve" name="improvement" placeholder="Areas for growth…" />
+                <input class="input-field__input" type="text" id="inp-improve" name="improvement" placeholder="Areas for growth…" required />
               </div>
             </div>
 
@@ -270,6 +271,14 @@
           Thank you for being a part of my journey and inspiring me.
           I value our time together and hope we can work again soon. Stay in touch!
         </p>
+
+        <!-- Photo circles (same as More panel) -->
+        <div class="more-photos">
+          <div class="more-photo-circle" style="width:112px;height:112px;" aria-label="GitHub LED sign"><img src="images/photo1.jpeg" alt="GitHub LED sign" /></div>
+          <div class="more-photo-circle" style="width:96px;height:96px;"   aria-label="GitHub Universe event"><img src="images/photo2.jpeg" alt="GitHub Universe event" /></div>
+          <div class="more-photo-circle" style="width:104px;height:104px;" aria-label="Walking through GitHub HQ"><img src="images/photo3.jpeg" alt="Walking through GitHub HQ" /></div>
+          <div class="more-photo-circle" style="width:88px;height:88px;"   aria-label="GitHub bingo night"><img src="images/photo4.png" alt="GitHub bingo night" /></div>
+        </div>
       </div>
 
       <!-- Footer Bar -->
@@ -286,7 +295,9 @@
 
       <!-- Action Bar -->
       <div class="actionBar actionBar--bordered">
-        <button class="btn btn--secondary" id="goBackBtn" type="button" style="padding:0;font-size:var(--fs-p3);">Go Back</button>
+        <button class="btn btn--primary" id="goBackBtn" type="button" style="gap:var(--gap-xs);">
+          <i class="ph ph-arrow-left" aria-hidden="true"></i>Go Back
+        </button>
         <button class="icon-btn" id="closeMoreBtn" aria-label="Close">
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256" aria-hidden="true">
             <path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"/>
@@ -301,9 +312,10 @@
         <div class="more-section">
           <h3 class="h3" id="moreTitle">My experience</h3>
           <p class="more-section__body">
-            My experience at Github was nothing short of inspirational. Remote work was
-            new for me, Github was new for me, and working with such a talented and
-            established design team was new for me.
+            My experience at GitHub was nothing short of inspirational. Remote work was new for me,
+            GitHub was new for me, and working with such a talented and established design team was
+            new for me. Every dot on this page is a person from that chapter, distinct, colorful,
+            and impossible to forget.
           </p>
         </div>
 
@@ -311,24 +323,21 @@
         <div class="more-section">
           <h3 class="h3">This art inspiration</h3>
           <p class="more-section__body">
-            Something about the concept here. Yayoi Kusama was an incredible artist. Her
-            perseverance to stick to her passions, and art. I recently found out she passed
-            away at a whopping age of 97 on my birthday! Feels super cool (ironically).
-            Inspires me to stick to my version of future design, even if the world doesn't
-            see it yet…
+            Yayoi Kusama obsessed over dots her entire life. Dots on canvases, on pumpkins, on herself.
+            For Kusama, dots weren't decorations, they were connection, repetition, infinity. She passed
+            away at 97, and I found out on my birthday. That felt like something. Every person I met at
+            GitHub is a dot in my own pattern. This page borrows her logic: the pattern only works
+            because of all of them together.
           </p>
         </div>
 
         <!-- Photo placeholders -->
         <div class="more-photos">
-          <div class="more-photo-circle" style="width:88px;height:88px;"  aria-label="Photo placeholder"></div>
-          <div class="more-photo-circle" style="width:64px;height:64px;"  aria-label="Photo placeholder"></div>
-          <div class="more-photo-circle" style="width:96px;height:96px;"  aria-label="Photo placeholder"></div>
-          <div class="more-photo-circle" style="width:56px;height:56px;"  aria-label="Photo placeholder"></div>
-          <div class="more-photo-circle" style="width:72px;height:72px;"  aria-label="Photo placeholder"></div>
-          <div class="more-photo-circle" style="width:48px;height:48px;"  aria-label="Photo placeholder"></div>
-          <div class="more-photo-circle" style="width:80px;height:80px;"  aria-label="Photo placeholder"></div>
-          <div class="more-photo-circle" style="width:60px;height:60px;"  aria-label="Photo placeholder"></div>
+          <div class="more-photo-circle" style="width:120px;height:120px;" aria-label="GitHub bingo night"><img src="images/photo5.png" alt="GitHub bingo night" /></div>
+          <div class="more-photo-circle" style="width:108px;height:108px;" aria-label="GitHub Universe event"><img src="images/photo6.png" alt="GitHub Universe event" /></div>
+          <div class="more-photo-circle" style="width:124px;height:124px;" aria-label="DEVYANI LED sign"><img src="images/photo7.png" alt="DEVYANI LED sign" /></div>
+          <div class="more-photo-circle" style="width:104px;height:104px;" aria-label="GitHub HQ entrance"><img src="images/photo8.png" alt="GitHub HQ entrance" /></div>
+          <div class="more-photo-circle" style="width:116px;height:116px;" aria-label="GitHub office"><img src="images/photo9.png" alt="GitHub office" /></div>
         </div>
 
       </div>
@@ -703,6 +712,28 @@
         }
         container.appendChild(row);
       });
+
+      // Attach phone formatter to any phone input just rendered
+      const phoneInput = container.querySelector('[name="contact-phone"]');
+      if (phoneInput) {
+        phoneInput.addEventListener('input', formatPhoneInput);
+        phoneInput.addEventListener('blur',  formatPhoneInput);
+      }
+    }
+
+    function formatPhoneInput(e) {
+      const input = e.target;
+      // Strip all non-digit characters
+      const digits = input.value.replace(/\D/g, '').slice(0, 10);
+      let formatted = digits;
+      if (digits.length > 6) {
+        formatted = `(${digits.slice(0,3)})-${digits.slice(3,6)}-${digits.slice(6)}`;
+      } else if (digits.length > 3) {
+        formatted = `(${digits.slice(0,3)})-${digits.slice(3)}`;
+      } else if (digits.length > 0) {
+        formatted = `(${digits}`;
+      }
+      input.value = formatted;
     }
 
     document.getElementById('contactChips').addEventListener('click', e => {
@@ -735,7 +766,32 @@
     document.getElementById('goBackBtn').addEventListener('click',       openEdit);
     document.getElementById('editFromConfirmBtn').addEventListener('click', openEdit);
 
+    // Clear error state as soon as a user starts fixing a field
+    ['inp-name','inp-role','inp-relationship','inp-feedback','inp-improve'].forEach(id => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.addEventListener('input',  () => { el.classList.remove('input-field__input--error'); el.closest('.input-field')?.classList.remove('input-field--error'); });
+      el.addEventListener('change', () => { el.classList.remove('input-field__input--error'); el.closest('.input-field')?.classList.remove('input-field--error'); });
+    });
+
     document.getElementById('submitFeedbackBtn').addEventListener('click', () => {
+      // Validate all required fields
+      const requiredFields = [
+        document.getElementById('inp-name'),
+        document.getElementById('inp-role'),
+        document.getElementById('inp-relationship'),
+        document.getElementById('inp-feedback'),
+        document.getElementById('inp-improve'),
+      ];
+      let isValid = true;
+      requiredFields.forEach(field => {
+        const isEmpty = !field.value.trim();
+        field.classList.toggle('input-field__input--error', isEmpty);
+        field.closest('.input-field')?.classList.toggle('input-field--error', isEmpty);
+        if (isEmpty) isValid = false;
+      });
+      if (!isValid) return;
+
       const color = REL_COLOR[document.getElementById('inp-relationship').value] || 'teal';
       const target = allDots.find(d => d.c === color && !d.s);
 
