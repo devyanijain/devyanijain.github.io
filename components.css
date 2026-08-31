@@ -507,7 +507,11 @@
 }
 
 .feedback-panel.is-open {
-  pointer-events: auto;
+  pointer-events: none; /* pass clicks through the wrapper to dots behind */
+}
+
+.feedback-panel.is-open .feedback-box:not([hidden]) {
+  pointer-events: auto; /* only the visible card captures events */
 }
 
 /* Single box fills the panel */
