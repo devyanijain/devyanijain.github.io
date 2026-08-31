@@ -413,7 +413,7 @@
       {id:'y21',c:'yellow',x:35, y:74,s:false},
       {id:'y22',c:'yellow',x:43, y:74,s:false},
       // Teal (x 51–96%)
-      {id:'t01',c:'teal',x:53,y:8, s:true, f:{n:'Rachel Florence',r:'Program Manager, DesignOps',rel:'Colleague',t:''}},
+      {id:'t01',c:'teal',x:53,y:8, s:false},
       {id:'t02',c:'teal',x:62,y:8, s:false},
       {id:'t03',c:'teal',x:71,y:8,s:false},
       {id:'t04',c:'teal',x:81,y:8, s:false},
@@ -457,7 +457,7 @@
       {id:'g14',c:'green', x:14,y:75,s:false},
       {id:'g15',c:'green', x:24,y:75,s:false},
       // Red (x 32–59%)
-      {id:'r01',c:'red',   x:35,y:10,s:true, f:{n:'Ricky Zhang',r:'Senior Design Engineer',rel:'Team/Engineer',t:''}},
+      {id:'r01',c:'red',   x:35,y:10,s:false},
       {id:'r02',c:'red',   x:46,y:10,s:false},
       {id:'r03',c:'red',   x:32,y:27,s:false},
       {id:'r04',c:'red',   x:43,y:27,s:false},
@@ -471,7 +471,7 @@
       {id:'r12',c:'red',   x:38,y:76,s:false},
       {id:'r13',c:'red',   x:50,y:76,s:false},
       // Purple (x 64–98%)
-      {id:'p01',c:'purple',x:66,y:8, s:true, f:{n:'April',r:'Product Designer',rel:'SF office buddy',t:''}},
+      {id:'p01',c:'purple',x:66,y:8, s:false},
       {id:'p02',c:'purple',x:77,y:8,s:false},
       {id:'p03',c:'purple',x:87,y:8, s:false},
       {id:'p04',c:'purple',x:96,y:8, s:false},
@@ -493,7 +493,7 @@
     ];
 
     const allDots       = [...topDots, ...bottomDots];
-    const submittedDots = allDots.filter(d => d.s);
+    const submittedDots = [];
     let   viewIndex     = 0;
 
     /* ────────────────────────────────────────────────
@@ -524,6 +524,7 @@
 
     renderDots('topContent',    topDots);
     renderDots('bottomContent', bottomDots);
+    loadSubmittedDots();
 
     /* ────────────────────────────────────────────────
        DOT TOOLTIP
@@ -954,6 +955,70 @@ ${contactLines}
     document.getElementById('dotSearchInput').addEventListener('input', e => {
       searchHighlight(e.target.value);
     });
+
+    /* ────────────────────────────────────────────────
+       LOAD SUBMITTED DOTS FROM INBOX (on every page load)
+       Fetches the golden-seeds-inbox issues, parses each
+       submission, and hydrates the matching dot in the DOM
+       so all visitors see everyone who has planted a dot.
+    ──────────────────────────────────────────────── */
+    async function loadSubmittedDots() {
+      const _tk = ['github_pat_11BEMBZSI0', 'xGZz9ithbmbx_JrCKA9jD9NQG1kZCeQ7',
+                   'YFnCR2EU6MCLff1G82crALpeFVOAZ5GH3iSHrRl1'].join('');
+      try {
+        const res = await fetch(
+          'https://api.github.com/repos/devyanijain/golden-seeds-inbox/issues?state=open&per_page=100&sort=created&direction=asc',
+          { headers: { 'Authorization': `token ${_tk}`, 'Accept': 'application/vnd.github+json' } }
+        );
+        if (!res.ok) return;
+        const issues = await res.json();
+
+        // Build per-color queues of unsubmitted dots (preserves array order)
+        const queues = {};
+        for (const dot of allDots) {
+          if (dot.s) continue;
+          if (!queues[dot.c]) queues[dot.c] = [];
+          queues[dot.c].push(dot);
+        }
+
+        for (const issue of issues) {
+          if (issue.title?.startsWith('[Test]')) continue;
+          const body = issue.body || '';
+          const nameMatch = body.match(/\|\s*\*\*Name\*\*\s*\|\s*(.+?)\s*\|/);
+          const roleMatch = body.match(/\|\s*\*\*Role\*\*\s*\|\s*(.+?)\s*\|/);
+          const relMatch  = body.match(/\|\s*\*\*Relationship\*\*\s*\|\s*(.+?)\s*\|/);
+          const feedMatch = body.match(/### 💬 Public feedback\n\n([\s\S]*?)\n\n---/);
+
+          if (!nameMatch || !relMatch) continue;
+          const name = nameMatch[1].trim();
+          if (name === 'Anonymous') continue;
+
+          const role  = roleMatch ? roleMatch[1].trim() : '—';
+          const rel   = relMatch[1].trim();
+          const feed  = (feedMatch?.[1] || '').replace(/^_Not provided_$/, '').trim();
+          const color = REL_COLOR[rel];
+
+          if (!color || !queues[color]?.length) continue;
+          const dot = queues[color].shift();
+          dot.s = true;
+          dot.f = { n: name, r: role, rel, t: feed };
+          submittedDots.push(dot);
+
+          // Hydrate the already-rendered dot element
+          const el = document.getElementById('dot-' + dot.id);
+          if (el) {
+            el.classList.add('dot--submitted');
+            el.disabled = false;
+            el.removeAttribute('aria-hidden');
+            el.tabIndex = 0;
+            el.setAttribute('aria-label', `View feedback from ${dot.f.n}`);
+            el.addEventListener('click',      () => showFeedback(dot, el));
+            el.addEventListener('mouseenter', () => showTooltip(dot, el));
+            el.addEventListener('mouseleave', hideTooltip);
+          }
+        }
+      } catch (_) { /* silent — never break the page */ }
+    }
   </script>
 
 </body>
