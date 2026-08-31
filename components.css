@@ -269,11 +269,13 @@
 .input-field__input:focus {
   outline:      none;
   background:   var(--bg-primary);
-  border-color: var(--bg-default);
+  border-color: var(--fg-blue-darker);
+  border-width: 2px;
 }
 .input-field__input:focus-visible {
-  outline:        3px solid var(--fg-blue-darker);
-  outline-offset: 1px;
+  outline: none;
+  border-color: var(--fg-blue-darker);
+  border-width: 2px;
 }
 
 /* Disabled */
