@@ -686,7 +686,9 @@
       chip.style.backgroundColor = REL_CHIP_DULL[color] || 'var(--fg-blue-dull)';
       chip.style.borderColor     = DOT_BORDER_COLOR[color] || '#00CCCF';
 
-      document.getElementById('vw-feedback').textContent = '\u201c' + f.t + '\u201d';
+      document.getElementById('vw-feedback').textContent = f.t
+        ? '\u201c' + f.t + '\u201d'
+        : 'No public feedback shared yet.';
 
       showOnly(viewBox);
       openPanel();
