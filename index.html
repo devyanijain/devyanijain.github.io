@@ -514,7 +514,6 @@
           el.addEventListener('mouseenter', () => showTooltip(dot, el));
           el.addEventListener('mouseleave', hideTooltip);
         } else {
-          el.disabled = true;
           el.setAttribute('aria-hidden', 'true');
           el.tabIndex = -1;
         }
@@ -832,7 +831,6 @@
         const el = document.getElementById('dot-' + target.id);
         if (el) {
           el.classList.add('dot--submitted');
-          el.disabled = false;
           el.removeAttribute('aria-hidden');
           el.tabIndex = 0;
           el.setAttribute('aria-label', `View feedback from ${target.f.n}`);
@@ -1010,7 +1008,6 @@ ${contactLines}
           const el = document.getElementById('dot-' + dot.id);
           if (el) {
             el.classList.add('dot--submitted');
-            el.disabled = false;
             el.removeAttribute('aria-hidden');
             el.tabIndex = 0;
             el.setAttribute('aria-label', `View feedback from ${dot.f.n}`);
